@@ -5,11 +5,16 @@ import User from "../pages/user";
 import Admin from "../pages/admin";
 import CheckProtectedRoute from "../hoc/CheckProtectedRoute";
 import Homepage from "../components/Homepage";
+import ApplicationTab from "../components/ApplicationTab";
+import { Typography } from "@mui/material";
+import HackathonDetails from "../pages/hackathon";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <User />,
+	
   },
   {
     path: "/admin",
@@ -34,6 +39,14 @@ const router = createBrowserRouter([
     element: (
       <CheckProtectedRoute role="user">
         <User />
+      </CheckProtectedRoute>
+    ),
+  },
+  {
+    path: "/hackathon/:name/:id",
+    element: (
+      <CheckProtectedRoute role="user">
+        <HackathonDetails />
       </CheckProtectedRoute>
     ),
   },

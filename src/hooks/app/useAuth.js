@@ -11,7 +11,6 @@ const useAuth = () => {
       setToken: state.setToken,
       fetchProfile: state.fetchProfile
     }),
-    // shallow
   ))
   return state
 }
