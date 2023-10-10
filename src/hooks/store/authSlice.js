@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import AuthApi from '../../apis/managers/authApi';
 
-export const authSlice = create((set) => ({
+export const authSlice = create((set,get) => ({
   isAuthenticated: true,
   token: null,
   user: null,
