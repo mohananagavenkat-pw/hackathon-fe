@@ -1,6 +1,6 @@
 /** @format */
 
-import { Input, Radio, Typography } from "@pwskills/rachnaui";
+import { Typography } from "@pwskills/rachnaui";
 import React from "react";
 import RegisterAs from "./RegisterAs";
 import TeamName from "./TeamName";
@@ -8,7 +8,7 @@ import AddMembers from "./AddMembers";
 
 const RegistrationPage = () => {
 	return (
-		<div className="flex flex-col h-screen px-5 gap-3">
+		<div className="flex flex-col h-fit mb-[40vh] px-5 gap-3">
 			<div>
 				<Typography variant="bold" component="body-regular">
 					Registration Form

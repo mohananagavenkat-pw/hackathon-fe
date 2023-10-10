@@ -5,6 +5,9 @@ import User from "../pages/user";
 import Admin from "../pages/admin";
 import CheckProtectedRoute from "../hoc/CheckProtectedRoute";
 import Homepage from "../components/Homepage";
+import ApplicationTab from "../components/ApplicationTab";
+import { Typography } from "@mui/material";
+import HackathonDetails from "../pages/hackathon";
 import Registration from "../pages/user/Registration";
 
 const router = createBrowserRouter([
@@ -34,7 +37,7 @@ const router = createBrowserRouter([
 		path: "/dashboard",
 		element: (
 			<CheckProtectedRoute role="user">
-				<Homepage />
+				<User />
 			</CheckProtectedRoute>
 		),
 	},
@@ -43,6 +46,14 @@ const router = createBrowserRouter([
 		element: (
 			<CheckProtectedRoute role="user">
 				<Registration />
+			</CheckProtectedRoute>
+		),
+	},
+	{
+		path: "/hackathon/:name/:id",
+		element: (
+			<CheckProtectedRoute role="user">
+				<HackathonDetails />
 			</CheckProtectedRoute>
 		),
 	},
