@@ -5,6 +5,7 @@ import User from "../pages/user";
 import Admin from "../pages/admin";
 import CheckProtectedRoute from "../hoc/CheckProtectedRoute";
 import Homepage from "../components/Homepage";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: (
       <CheckProtectedRoute role="user">
-        <Homepage />
+        <User />
       </CheckProtectedRoute>
     ),
   },
