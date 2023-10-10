@@ -1,9 +1,11 @@
-import { get } from "../client"
+/** @format */
+
+import { get } from "../client";
 
 class AuthApi {
-  static async fetchProfile(userName) {
-    return await get(`/user/details/${userName}`)
-  }
+	static async fetchProfile(userName) {
+		return await get(`/user/details/${userName}`);
+	}
 }
 
-export default AuthApi
+export default AuthApi;
