@@ -1,9 +1,30 @@
 /** @format */
 
+import { Input, Radio, Typography } from "@pwskills/rachnaui";
 import React from "react";
+import RegisterAs from "./RegisterAs";
+import TeamName from "./TeamName";
+import AddMembers from "./AddMembers";
 
 const RegistrationPage = () => {
-	return <div>RegistrationPage</div>;
+	return (
+		<div className="flex flex-col h-screen px-5 gap-3">
+			<div>
+				<Typography variant="bold" component="body-regular">
+					Registration Form
+				</Typography>
+			</div>
+			<div>
+				<RegisterAs />
+			</div>
+			<div>
+				<TeamName />
+			</div>
+			<div>
+				<AddMembers />
+			</div>
+		</div>
+	);
 };
 
 export default RegistrationPage;

@@ -1,84 +1,86 @@
+/** @format */
+
 import React, { useState } from "react";
 import { Box, Divider, Tabs, Tab } from "@mui/material";
 import EventCard from "./EventCard";
 import { Button } from "@pwskills/rachnaui";
 
 function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "red" }}
-      onClick={onClick}
-    />
-  );
+	const { className, style, onClick } = props;
+	return (
+		<div
+			className={className}
+			style={{ ...style, display: "block", background: "red" }}
+			onClick={onClick}
+		/>
+	);
 }
 
 function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "green" }}
-      onClick={onClick}
-    />
-  );
+	const { className, style, onClick } = props;
+	return (
+		<div
+			className={className}
+			style={{ ...style, display: "block", background: "green" }}
+			onClick={onClick}
+		/>
+	);
 }
 
 function Homepage() {
-  const [currentTabIndex, setCurrentTabIndex] = useState(0);
+	const [currentTabIndex, setCurrentTabIndex] = useState(0);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-  };
+	const settings = {
+		dots: true,
+		infinite: true,
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		nextArrow: <SampleNextArrow />,
+		prevArrow: <SamplePrevArrow />,
+	};
 
-  const handleTabChange = (e, tabIndex) => {
-    console.log(tabIndex);
-    setCurrentTabIndex(tabIndex);
-  };
+	const handleTabChange = (e, tabIndex) => {
+		console.log(tabIndex);
+		setCurrentTabIndex(tabIndex);
+	};
 
-  const hackathonEvents = [
-    {
-      title: "event 1",
-      companyName: "company 1",
-      companyLogo: "companyLogo",
-    },
-    {
-      title: "event 2",
-      companyName: "company 2",
-      companyLogo: "companyLogo",
-    },
-    {
-      title: "event 3",
-      companyName: "company 3",
-      companyLogo: "companyLogo",
-    },
-    {
-      title: "event 4",
-      companyName: "company 4",
-      companyLogo: "companyLogo",
-    },
-    {
-      title: "event 5",
-      companyName: "company 5",
-      companyLogo: "companyLogo",
-    },
-    {
-      title: "event 6",
-      companyName: "company 6",
-      companyLogo: "companyLogo",
-    },
-  ];
+	const hackathonEvents = [
+		{
+			title: "event 1",
+			companyName: "company 1",
+			companyLogo: "companyLogo",
+		},
+		{
+			title: "event 2",
+			companyName: "company 2",
+			companyLogo: "companyLogo",
+		},
+		{
+			title: "event 3",
+			companyName: "company 3",
+			companyLogo: "companyLogo",
+		},
+		{
+			title: "event 4",
+			companyName: "company 4",
+			companyLogo: "companyLogo",
+		},
+		{
+			title: "event 5",
+			companyName: "company 5",
+			companyLogo: "companyLogo",
+		},
+		{
+			title: "event 6",
+			companyName: "company 6",
+			companyLogo: "companyLogo",
+		},
+	];
 
-  return (
-    <div>
-      <Button variant="primary">Registration</Button>
-      {/* <Box
+	return (
+		<div>
+			<Button variant="primary">Registration</Button>
+			{/* <Box
         sx={{
           display: "flex",
           flexDirection: "row",
@@ -175,15 +177,15 @@ function Homepage() {
           <Tab label="Previous" sx={{ padding: "0" }} />
         </Tabs>
       </Box> */}
-      {/* <Box>
+			{/* <Box>
         {hackathonEvents &&
           hackathonEvents.map((event) => {
             return <EventCard event={event} />;
           })}
       </Box> */}
-      {/* <Divider /> */}
-    </div>
-  );
+			{/* <Divider /> */}
+		</div>
+	);
 }
 
 export default Homepage;
