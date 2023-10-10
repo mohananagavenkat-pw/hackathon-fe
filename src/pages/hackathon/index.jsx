@@ -3,6 +3,7 @@ import React from "react";
 import ApplicationTab from "../../components/ApplicationTab";
 import HackathonCard from "../../components/Cards/HackathonCard";
 import hackathonImage from "../../assets/hackathonImage.svg";
+import Navbar from "../../components/Navbar";
 
 const HackathonDetails = () => {
   const tabs = [
@@ -24,6 +25,7 @@ const HackathonDetails = () => {
   ];
   return (
     <div className="flex flex-col relative bg-gray-50 h-screen">
+      <Navbar color = "black"/>
       <div
         style={{
           background: "rgba(207, 207, 225, 1)",
