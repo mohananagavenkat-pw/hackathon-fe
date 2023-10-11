@@ -7,9 +7,8 @@ import "../../index.css";
 const User = () => {
   return (
     <div>
-      <Navbar />
+      <Navbar color="white" />
       <Homepage />
-
       <FooterComponent />
     </div>
   );

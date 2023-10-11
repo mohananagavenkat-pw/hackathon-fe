@@ -3,7 +3,7 @@
 import React from "react";
 import { Button, Card, Typography } from "@pwskills/rachnaui";
 
-function EventCard() {
+function EventCard({ hackathonEvent }) {
   return (
     <Card className="m-0 flex flex-col p-3 gap-6 pb-6 shadow-light">
       <div className="flex flex-col gap-4">
@@ -19,7 +19,7 @@ function EventCard() {
             variant="bold"
             component="h4"
           >
-            Hackathon name will display here
+            {hackathonEvent.title}
           </Typography>
           <img src="images/ShareIcon.svg" alt="ShareIcon" />
         </div>
@@ -31,7 +31,7 @@ function EventCard() {
           variant="bold"
           component="body-regular"
         >
-          Company Name
+          {hackathonEvent.companyName}
         </Typography>
       </div>
       <div className="flex gap-3 items-center">
