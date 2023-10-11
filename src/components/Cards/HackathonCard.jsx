@@ -2,16 +2,25 @@ import { Button, Grid } from "@mui/material";
 // import pwSkillsLogo from  'public/images/PwSkillsLogo.svg'
 import React from "react";
 import amazonImage from "../../assets/amazon.svg";
+import Calendar from "../../assets/Calendar";
 
 const HackathonCard = () => {
+  const iconMapFunction = (type) =>  {
+    switch(type){
+      case "calendar" : 
+      return <Calendar />
+      default : 
+      return <Calendar />
+    }
+  }
   const iconTextArray = [
     {
-      icon : "Icon",
+      icon : "calendar",
       primaryText: "Primary Text",
       secondaryText : "Secondary Text"
     },
     {
-      icon : "Icon",
+      icon : "calendar",
       primaryText: "Primary Text",
       secondaryText : "Secondary Text"
     },
@@ -27,7 +36,7 @@ const HackathonCard = () => {
     }
   ]
   return (
-    <div className="flex flex-col w-full gap-8 p-2 bg-white" style = {{paddingLeft: "24px"  ,paddingRight: "24px" , paddingTop: "16px" , paddingBottom: "16px"   , borderRadius : "8px" }}>
+    <div className="flex flex-col w-full gap-4 p-2 bg-white" style = {{paddingLeft: "24px"  ,paddingRight: "24px" , paddingTop: "16px" , paddingBottom: "16px"   , borderRadius : "8px" }}>
      <div className="flex w-full gap-4">
         <div style = {{padding: '28px' , background: "#F8F8F8"}}>
           <img src={amazonImage} alt="icon" />
@@ -49,7 +58,7 @@ const HackathonCard = () => {
      <div className="flex justify-center items-center gap-4">
             {iconTextArray.map((obj  ,index) =>
             <div className="flex gap-2">
-                {obj.icon}
+                {iconMapFunction(obj.icon)}
                 <div className="flex flex-col">
                  <p style={{fontSize: "12px" , color: "#757575" , fontWeight : 400}}>{obj.primaryText}</p> 
                  <p style={{fontSize: "16px"  , fontWeight : 600}}>{obj.secondaryText}</p> 
