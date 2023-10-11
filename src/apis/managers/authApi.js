@@ -1,10 +1,22 @@
 /** @format */
 
-import { get } from "../client";
+import { get, post } from "../client";
 
 class AuthApi {
 	static async fetchProfile(userName) {
-		return await get(`/user/details/${userName}`);
+		return get(`/user/details/${userName}`);
+	}
+
+	static async healthCheck() {
+		return get("/health-check/basic");
+	}
+
+	static async login(payload) {
+		return post("auth/signin", payload);
+	}
+
+	static async signUp(payload) {
+		return post("auth/signup", payload);
 	}
 }
 

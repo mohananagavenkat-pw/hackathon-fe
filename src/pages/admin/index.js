@@ -1,7 +1,9 @@
+/** @format */
+
 import React from "react";
 
 const Admin = () => {
-  return <div>Admin 111111</div>;
+	return <div>Admin</div>;
 };
 
 export default Admin;
