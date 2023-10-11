@@ -137,7 +137,7 @@ function Homepage() {
           className="absolute z-[-1] bottom-0 left-0"
         />
       </div>
-      <div className="bg-[#F8FAFB] pt-[72px] px-20 flex flex-col gap-[40px]">
+      <div className="bg-[#F8FAFB] pt-[72px] px-20 flex flex-col gap-[24px]">
         <HackathonListingComponent />
         <WhyHackathonComponent />
       </div>

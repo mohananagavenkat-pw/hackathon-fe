@@ -5,7 +5,7 @@ import { Button, Card, Typography } from "@pwskills/rachnaui";
 
 function EventCard() {
   return (
-    <Card className="m-0 flex flex-col p-3 gap-6 pb-6">
+    <Card className="m-0 flex flex-col p-3 gap-6 pb-6 shadow-light">
       <div className="flex flex-col gap-4">
         <img
           src="images/HackathonDummyImage.svg"
