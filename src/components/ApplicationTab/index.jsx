@@ -5,7 +5,7 @@ import React, { useState } from "react";
 const ApplicationTab = ({ options, direction }) => {
   const [activeTab, setActiveTab] = useState(options[0]);
   return (
-    <div style={{ padding: "50px" }}>
+    <div style={{ width:"100%"}}>
       <div
         className={`flex ${
           direction === "row" ? "flex-column" : "flex-row"
@@ -15,7 +15,7 @@ const ApplicationTab = ({ options, direction }) => {
           className={`flex ${
             direction === "row" ? "flex-row" : "flex-col"
           } gap-2 p-4 `}
-          style={{ background: "white" , borderRadius : "8px" , width : "15%"}}
+          style={{ background: "white" , borderRadius : "8px" , width : "20%" , height: "600px"}}
         >
           {options.map((optionSingleObj) => (
             <div
