@@ -9,6 +9,7 @@ import ApplicationTab from "../components/ApplicationTab";
 import { Typography } from "@mui/material";
 import HackathonDetails from "../pages/hackathon";
 import Registration from "../pages/user/Registration";
+import Live from "../pages/hackathonLive";
 
 const router = createBrowserRouter([
 	{
@@ -54,6 +55,14 @@ const router = createBrowserRouter([
 		element: (
 			<CheckProtectedRoute role="user">
 				<HackathonDetails />
+			</CheckProtectedRoute>
+		),
+	},
+	{
+		path: "/hackathon/:name/:id/live",
+		element: (
+			<CheckProtectedRoute role="user">
+				<Live />
 			</CheckProtectedRoute>
 		),
 	},

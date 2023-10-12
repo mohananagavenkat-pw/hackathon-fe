@@ -3,8 +3,10 @@ import { Button, Grid } from "@mui/material";
 import React from "react";
 import amazonImage from "../../assets/amazon.svg";
 import Calendar from "../../assets/Calendar";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const HackathonCard = () => {
+  let navigate = useNavigate()
   const iconMapFunction = (type) =>  {
     switch(type){
       case "calendar" : 
@@ -35,6 +37,9 @@ const HackathonCard = () => {
       secondaryText : "Secondary Text"
     }
   ]
+  const myFunction = () => {
+    navigate('/hackathon/:name/:id/live')
+  }
   return (
     <div className="flex flex-col w-full gap-4 p-2 bg-white" style = {{paddingLeft: "24px"  ,paddingRight: "24px" , paddingTop: "16px" , paddingBottom: "16px"   , borderRadius : "8px" }}>
      <div className="flex w-full gap-4">
@@ -47,7 +52,7 @@ const HackathonCard = () => {
                <p style = {{fontSize : "16px" , fontWeight : 400 , color: "#757575"}}>Company Name</p> 
             </div>
             <div>
-            <button style = {{border:"1px solid #E97862" , color : "#E97862"  , borderRadius: "4px" , paddingTop : "9px" , paddingBottom : "9px" , paddingLeft : "20px" ,  paddingRight : "20px"}}>
+            <button onClick={() => myFunction()} style = {{border:"1px solid #E97862" , color : "#E97862"  , borderRadius: "4px" , paddingTop : "9px" , paddingBottom : "9px" , paddingLeft : "20px" ,  paddingRight : "20px"}}>
                 Register Now
             </button>
             </div>
