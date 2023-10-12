@@ -17,7 +17,7 @@ import {
   Quiz,
   AccountTree,
 } from "@mui/icons-material";
-import { blue, red, yellow } from "@mui/material/colors";
+import { blue, orange, red, yellow } from "@mui/material/colors";
 import DialogComponent from "./DialogComponent";
 
 function Homepage() {
@@ -143,7 +143,11 @@ function Homepage() {
     <div className="flex flex-col gap-4 my-8 mx-20">
       <Button
         variant="contained"
-        sx={{ width: "fit-content", alignSelf: "flex-end" }}
+        sx={{
+          width: "fit-content",
+          alignSelf: "flex-end",
+          backgroundColor: "#E97862",
+        }}
         onClick={handleCreateHackathon}
       >
         Create Hackathon
@@ -216,7 +220,7 @@ function Homepage() {
                     variant="filled"
                     style={{
                       backgroundColor:
-                        row.mode === "live" ? red[400] : "#FFB822",
+                        row.mode === "live" ? red[100] : yellow[100],
                       color: "black",
                       width: "75px",
                     }}
@@ -247,7 +251,7 @@ function Homepage() {
                 <TableCell>
                   <Avatar
                     sx={{
-                      backgroundColor: blue[500],
+                      backgroundColor: "#E97862",
                       width: 40,
                       height: 40,
                       cursor: "pointer",
@@ -262,7 +266,7 @@ function Homepage() {
                 <TableCell>
                   <Avatar
                     sx={{
-                      backgroundColor: blue[500],
+                      backgroundColor: "#E97862",
                       width: 40,
                       height: 40,
                       cursor: "pointer",

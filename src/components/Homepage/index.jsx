@@ -12,11 +12,11 @@ function Homepage() {
   return (
     <div>
       <div className="bg-black  max-w-full">
-        <div className="pt-[26px] pb-[76px] px-20 justify-between flex ">
+        <div className="pt-[26px] pb-[76px] px-20 justify-between flex  flex-col-reverse medium:flex-row ">
           <div className="flex flex-col medium:!w-[520px] gap-9">
             <Typography
               component="body-regular"
-              variant="regular"
+              variant=" regular"
               className=" text-white"
             >
               PW Skills is your one-stop-shop for upscaling. Get maximum value
@@ -83,9 +83,9 @@ function Homepage() {
                   Jobs
                 </Typography>
               </div>
-              <div className="flex gap-6">
+              <div className="flex gap-6 flex-wrap">
                 <img src="/images/JobIcon.svg" alt="JobIcon" />
-                <div className="flex flex-col w-[272px] gap-1">
+                <div className="flex flex-col medium:w-[272px] gap-1">
                   <Typography
                     variant="bold"
                     className="text-[20px] leading-[30px] text-[#3D3D3D]"
