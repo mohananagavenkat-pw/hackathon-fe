@@ -16,6 +16,7 @@ import {
   Assignment,
   Quiz,
   AccountTree,
+  Groups,
 } from "@mui/icons-material";
 import { blue, orange, red, yellow } from "@mui/material/colors";
 import DialogComponent from "./DialogComponent";
@@ -59,6 +60,10 @@ function Homepage() {
 
   const handleEditClick = (name, _id) => {
     navigate(`/admin/${name}/${_id}`);
+  };
+
+  const handleTeamDetails = (name, _id) => {
+    navigate(`/admin/hackathon/${name}/${_id}`);
   };
 
   const [hackathonList, setHackathonList] = useState([
@@ -140,13 +145,12 @@ function Homepage() {
   };
 
   return (
-    <div className="flex flex-col gap-4 my-8 mx-20">
+    <div className="flex flex-col gap-10 my-8 mx-20">
       <Button
         variant="contained"
         sx={{
           width: "fit-content",
           alignSelf: "flex-end",
-          backgroundColor: "#E97862",
         }}
         onClick={handleCreateHackathon}
       >
@@ -183,8 +187,15 @@ function Homepage() {
               <TableCell align="center" sx={{ fontWeight: "bold" }}>
                 Hackathon Date
               </TableCell>
-              <TableCell align="center" sx={{ fontWeight: "bold" }}></TableCell>
-              <TableCell align="center" sx={{ fontWeight: "bold" }}></TableCell>
+              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+                Edit
+              </TableCell>
+              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+                Delete
+              </TableCell>
+              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+                View Team
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -249,35 +260,56 @@ function Homepage() {
                 <TableCell align="center">{row.end_date}</TableCell>
                 <TableCell align="center">{row.event_date}</TableCell>
                 <TableCell>
-                  <Avatar
-                    sx={{
-                      backgroundColor: "#E97862",
-                      width: 40,
-                      height: 40,
-                      cursor: "pointer",
-                    }}
-                    onClick={() => {
-                      handleEditClick(row.name, row._id);
-                    }}
-                  >
-                    <Edit color="white" />
-                  </Avatar>
+                  <div className="flex justify-center">
+                    <Avatar
+                      sx={{
+                        backgroundColor: "#1976D2",
+                        width: 40,
+                        height: 40,
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        handleEditClick(row.name, row._id);
+                      }}
+                    >
+                      <Edit color="white" />
+                    </Avatar>
+                  </div>
                 </TableCell>
                 <TableCell>
-                  <Avatar
-                    sx={{
-                      backgroundColor: "#E97862",
-                      width: 40,
-                      height: 40,
-                      cursor: "pointer",
-                    }}
-                    onClick={() => {
-                      setItemToDelete(row._id);
-                      handleOpenDialog();
-                    }}
-                  >
-                    <Delete color="white" />
-                  </Avatar>
+                  <div className="flex justify-center">
+                    <Avatar
+                      sx={{
+                        backgroundColor: "#1976D2",
+                        width: 40,
+                        height: 40,
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        setItemToDelete(row._id);
+                        handleOpenDialog();
+                      }}
+                    >
+                      <Delete color="white" />
+                    </Avatar>
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className="flex justify-center">
+                    <Avatar
+                      sx={{
+                        backgroundColor: "#1976D2",
+                        width: 40,
+                        height: 40,
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        handleTeamDetails(row.name, row._id);
+                      }}
+                    >
+                      <Groups color="white" />
+                    </Avatar>
+                  </div>
                 </TableCell>
               </TableRow>
             ))}
