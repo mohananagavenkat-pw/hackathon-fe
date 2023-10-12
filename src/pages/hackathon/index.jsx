@@ -1,3 +1,4 @@
+/** @format */
 
 import React from "react";
 import ApplicationTab from "../../components/ApplicationTab";

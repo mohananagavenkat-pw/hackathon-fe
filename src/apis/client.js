@@ -21,7 +21,7 @@ class ApiClient {
 			baseURL:
 				baseURL ||
 				process.env.NEXT_PUBLIC_BACKEND_URL ||
-				"https://localhost:3000",
+				"http://192.168.2.206:3000/api",
 		});
 
 		apiClient.interceptors.request.use(
@@ -44,7 +44,7 @@ class ApiClient {
 
 		apiClient.interceptors.response.use(
 			async (response) => {
-				return [response.data, undefined, undefined];
+				return response.data;
 			},
 			(err) => {
 				if (err.response) {
@@ -61,21 +61,7 @@ class ApiClient {
 							err.response.data,
 						];
 					}
-					if (err?.response?.data?.onBoardStatus === false) {
-						// change +++ for route change
-						// Router.push(
-						//   getOnboardPathByWizardStatus(
-						//     useAuthStore.getState().user?.onBoardWizardStatus,
-						//     useAuthStore.getState().user?.role
-						//   )
-						// );
 
-						return [
-							undefined,
-							"Please complete your onboarding first!",
-							err.response.data,
-						];
-					}
 					if (!err.response?.data?.success) {
 						return [undefined, err.response?.data?.message, err.response?.data];
 					}

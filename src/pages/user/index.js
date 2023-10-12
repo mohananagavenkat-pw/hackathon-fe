@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import Navbar from "../../components/Navbar";
 import Homepage from "../../components/Homepage";
@@ -5,14 +7,14 @@ import FooterComponent from "../../components/Footer";
 import "../../index.css";
 
 const User = () => {
-  return (
-    <div>
-      <Navbar />
-      <Homepage />
+	return (
+		<div>
+			<Navbar />
+			<Homepage />
 
-      <FooterComponent />
-    </div>
-  );
+			<FooterComponent />
+		</div>
+	);
 };
 
 export default User;

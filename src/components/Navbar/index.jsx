@@ -1,6 +1,8 @@
+/** @format */
+
 import React from "react";
 import { Container, Button } from "@pwskills/rachnaui";
-import pwSkillsLogo from "../../assets/PwSkillsLogo.svg"
+import pwSkillsLogo from "../../assets/PwSkillsLogo.svg";
 import PWskills from "../../assets/PWskills";
 
 function Navbar({color}) {
