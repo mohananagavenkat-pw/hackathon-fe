@@ -1,11 +1,14 @@
 /** @format */
 
 const hackathonTypes = {
-	LIVE: "live",
-	PRACTICE: "practice",
 	ASSIGNMENT: "assignment",
 	PROJECT: "project",
 	TEST: "test",
+};
+
+const hackathonModes = {
+	LIVE: "live",
+	PRACTICE: "practice",
 };
 
 const submissionsType = {
@@ -18,4 +21,4 @@ const questionType = {
 	TEXT: "text",
 };
 
-export { hackathonTypes, submissionsType, questionType };
+export { hackathonTypes, submissionsType, questionType, hackathonModes };
