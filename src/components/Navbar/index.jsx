@@ -9,7 +9,7 @@ function Navbar({ color }) {
     <Container
       className={`bg-${
         color === "white" ? "black" : "white"
-      } !px-20 !py-[46px] medium:w-[85%] medium:m-auto large:w-[95%] flex justify-between w-full `}
+      } !px-20 !py-[46px] medium:w-[85%] medium:m-auto large:w-[95%] flex justify-between w-full  min-w-full`}
     >
       <PWskills color={color} />
       <Button>Registration</Button>
