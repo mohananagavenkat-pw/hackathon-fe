@@ -59,7 +59,7 @@ const router = createBrowserRouter([
 		),
 	},
 	{
-		path: "/hackathon/:name/:id/live",
+		path: "/hackathon/:name/:id/:status",
 		element: (
 			<CheckProtectedRoute role="user">
 				<Live />

@@ -70,7 +70,7 @@ const HackathonDetails = () => {
           backgroundImage: `url(${hackathonImage})`,
         }}
       ></div>
-      <div style = {{position : "relative"}} className=" flex items-center justify-center">
+      <div style = {{position : "relative"}} className=" flex items-center justify-center ">
         <div className="relative top-[240px] w-[85%]">
         <ApplicationTab options={tabs} direction={"column"} />
         </div>
