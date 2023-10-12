@@ -1,37 +1,14 @@
 import { Button } from '@pwskills/rachnaui'
 import React, { useEffect, useState } from 'react'
+import { useTimer } from '../../hooks/timer/useTimer'
+import { calculateTimeDifference } from '../../hooks/utils/genericFunction'
 
 const Live = () =>  {
-    const [seconds , setSeconds] = useState(60)
-    const [minutes  , setMinutes] = useState(1)
-    const [hour , setHour] = useState(0)
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (seconds > 0) {
-                setSeconds(seconds - 1);
-            }
-            if (seconds === 0) {
-                if (minutes === 0) {
-                    // setDisableSendAgain(false);
-                    clearInterval(interval);
-                } else {
-                    setMinutes(minutes - 1);
-                    setSeconds(59);
-                }
-            }
-            if(minutes === 0 && seconds === 0){
-                if(hour === 0){
-                    clearInterval(interval)
-                }
-                else{
-                    setHour(hour -1)
-                    setMinutes(59)
-                }
-            }
-        }, 1000);
-        return () => clearInterval(interval);
-    }, [minutes, seconds]);
-      
+    const {hour , minutes , seconds} = useTimer(2)
+      useEffect(() => {
+       const catchObj=  calculateTimeDifference("2023-07-25T12:23:40.693Z" , "2023-07-26T11:19:30.693Z")
+       console.log("catchObj" , catchObj)
+      },[])
   return (
     <div>
         <div>

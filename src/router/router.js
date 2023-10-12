@@ -77,11 +77,12 @@ const router = createBrowserRouter([
 		),
 	},
 	{
-		path: "/hackathon/:name/:id/live",
-		element: <Live />,
-		// <CheckProtectedRoute role="user">
-		// 	<Live />
-		// </CheckProtectedRoute>
+		path: "/hackathon/:name/:id/:status",
+		element: (
+			<CheckProtectedRoute role="user">
+				<Live />
+			</CheckProtectedRoute>
+		),
 	},
 ]);
 
