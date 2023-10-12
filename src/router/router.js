@@ -12,8 +12,9 @@ import Registration from "../pages/user/Registration";
 import Login from "../pages/Auth/Login";
 import SignUp from "../pages/Auth/SignUp";
 import { Navigate } from "react-router-dom";
-import CreateUpdateHackathon from "../components/CreateUpdateHackathon";
+
 import Live from "../pages/hackathonLive";
+import CreateEditHackathon from "../pages/admin/CreateEditHackathon";
 
 const router = createBrowserRouter([
 	{
@@ -48,8 +49,8 @@ const router = createBrowserRouter([
 		),
 	},
 	{
-		path: "/admin/new",
-		element: <CreateUpdateHackathon />,
+		path: "/admin/create-hackathon",
+		element: <CreateEditHackathon />,
 	},
 
 	{
