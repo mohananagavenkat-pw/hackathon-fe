@@ -9,34 +9,52 @@ import ApplicationTab from "../components/ApplicationTab";
 import { Typography } from "@mui/material";
 import HackathonDetails from "../pages/hackathon";
 import Registration from "../pages/user/Registration";
+import Login from "../pages/Auth/Login";
+import SignUp from "../pages/Auth/SignUp";
+import { Navigate } from "react-router-dom";
+import CreateUpdateHackathon from "../components/CreateUpdateHackathon";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <User />,
+		element: <Navigate to="/login" />,
+		children: [],
+	},
+
+	{
+		path: "/login",
+		element: <Login />,
 	},
 	{
-		path: "/admin",
-		element: (
-			<CheckProtectedRoute role="admin">
-				<Admin />
-			</CheckProtectedRoute>
-		),
-
-		children: [{}],
+		path: "/sign-up",
+		element: <SignUp />,
 	},
 	{
 		path: "/user",
 		element: (
-			<CheckProtectedRoute role="admin">
+			<CheckProtectedRoute roleArg="user">
 				<User />
 			</CheckProtectedRoute>
 		),
 	},
+
+	{
+		path: "/admin",
+		element: (
+			<CheckProtectedRoute roleArg="admin">
+				<Admin />
+			</CheckProtectedRoute>
+		),
+	},
+	{
+		path: "/admin/new",
+		element: <CreateUpdateHackathon />,
+	},
+
 	{
 		path: "/dashboard",
 		element: (
-			<CheckProtectedRoute role="user">
+			<CheckProtectedRoute roleArg="user">
 				<User />
 			</CheckProtectedRoute>
 		),
@@ -44,7 +62,7 @@ const router = createBrowserRouter([
 	{
 		path: "/register",
 		element: (
-			<CheckProtectedRoute role="user">
+			<CheckProtectedRoute roleArg="user">
 				<Registration />
 			</CheckProtectedRoute>
 		),
@@ -52,7 +70,7 @@ const router = createBrowserRouter([
 	{
 		path: "/hackathon/:name/:id",
 		element: (
-			<CheckProtectedRoute role="user">
+			<CheckProtectedRoute roleArg="user">
 				<HackathonDetails />
 			</CheckProtectedRoute>
 		),
