@@ -10,73 +10,80 @@ import ApplicationTab from "../components/ApplicationTab";
 import { Typography } from "@mui/material";
 import HackathonDetails from "../pages/hackathon";
 import Registration from "../pages/user/Registration";
+import Login from "../pages/Auth/Login";
+import SignUp from "../pages/Auth/SignUp";
+import { Navigate } from "react-router-dom";
+
 import Live from "../pages/hackathonLive";
+import CreateEditHackathon from "../pages/admin/CreateEditHackathon";
 import HackathonTeamViewPage from "../components/Admin/HackathonTeamViewPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <User />,
+    element: <Navigate to="/login" />,
+    children: [],
+  },
+
+  {
+    path: "/login",
+    element: <Login />,
   },
   {
-    path: "/admin",
-    element: (
-      <CheckProtectedRoute role="admin">
-        <Admin>
-          <HomepageAdmin />
-        </Admin>
-      </CheckProtectedRoute>
-    ),
-
-    children: [{}],
+    path: "/sign-up",
+    element: <SignUp />,
   },
   {
     path: "/user",
     element: (
-      <CheckProtectedRoute role="admin">
-        <User />
-      </CheckProtectedRoute>
+      // <CheckProtectedRoute roleArg="user">
+      <User />
+      // </CheckProtectedRoute>
+    ),
+  },
+
+  {
+    path: "/admin",
+    element: (
+      // <CheckProtectedRoute roleArg="admin">
+      <Admin />
+      // </CheckProtectedRoute>
     ),
   },
   {
+    path: "/admin/create-hackathon",
+    element: <CreateEditHackathon />,
+  },
+
+  {
     path: "/dashboard",
     element: (
-      <CheckProtectedRoute role="user">
-        <User />
-      </CheckProtectedRoute>
+      // <CheckProtectedRoute roleArg="user">
+      <User />
+      // </CheckProtectedRoute>
     ),
   },
   {
     path: "/register",
     element: (
-      <CheckProtectedRoute role="user">
-        <Registration />
-      </CheckProtectedRoute>
+      // <CheckProtectedRoute roleArg="user">
+      <Registration />
+      // </CheckProtectedRoute>
     ),
   },
   {
     path: "/hackathon/:name/:id",
     element: (
-      <CheckProtectedRoute role="user">
-        <HackathonDetails />
-      </CheckProtectedRoute>
+      // <CheckProtectedRoute roleArg="user">
+      <HackathonDetails />
+      // </CheckProtectedRoute>
     ),
   },
   {
-    path: "/hackathon/:name/:id/live",
+    path: "/hackathon/:name/:id/:status",
     element: (
       <CheckProtectedRoute role="user">
         <Live />
-      </CheckProtectedRoute>
-    ),
-  },
-  {
-    path: "/admin/hackathon/:name/:id",
-    element: (
-      <CheckProtectedRoute role="admin">
-        <Admin>
-          <HackathonTeamViewPage />
-        </Admin>
       </CheckProtectedRoute>
     ),
   },

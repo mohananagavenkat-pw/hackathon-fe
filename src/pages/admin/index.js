@@ -1,7 +1,10 @@
-import { Container } from "@pwskills/rachnaui";
+/** @format */
+
+import { Button, Container } from "@pwskills/rachnaui";
 import React from "react";
 import PWskills from "../../assets/PWskills";
 import Homepage from "../../components/Admin/HomePage";
+import AdminLayout from "../../components/Layout/AdminLayout";
 import { Button } from "@mui/material";
 
 const Admin = ({ color = "black", children }) => {

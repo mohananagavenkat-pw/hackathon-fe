@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 import { Trash } from "@pwskills/rachnaui/Icons";
 import Add from "../../styles/Icons/Add";
-import { validateEmail } from "../../utils";
+import { validateEmail } from "../../utils/functions";
 
 const member = {
 	email: "",

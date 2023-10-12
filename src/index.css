@@ -1,3 +1,5 @@
+/** @format */
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap");
 
 @tailwind base;
@@ -6,28 +8,33 @@
 
 html,
 body {
-  margin: 0;
-  width: 100%;
+	margin: 0;
+	width: 100%;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 
 /* For IE, Edge and Firefox */
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
+	-ms-overflow-style: none; /* IE and Edge */
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .slow-spin {
-  animation: spin 10s linear infinite; /* Adjust the duration (10s) to control the speed */
+	animation: spin 10s linear infinite; /* Adjust the duration (10s) to control the speed */
+}
+
+.ck-editor__editable {
+	min-height: 100px;
+	max-height: 300px;
 }
