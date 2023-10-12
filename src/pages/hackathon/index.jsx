@@ -48,7 +48,10 @@ const HackathonDetails = () => {
       <div className={`flex bg-white justify-center items-center py-4 w-full `}>
         <div className={`flex justify-between w-[85%]`}>
         <PWskills color = {"black"}/>
-        <Button>Registration</Button>
+        <div className="flex gap-2">
+        <Button>Sign In</Button>
+        <Button variant="secondary">Sign Up</Button>
+        </div>
         </div>
       
     </div>
