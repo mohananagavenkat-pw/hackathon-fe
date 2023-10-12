@@ -2,7 +2,7 @@
 
 import { Button, Input, Typography } from "@pwskills/rachnaui";
 import React, { useState } from "react";
-import { saveTokenAndRole, validateEmail } from "../../utils";
+import { saveTokenAndRole, validateEmail } from "../../utils/functions";
 import AuthApi from "../../apis/managers/authApi";
 import { useNavigate } from "react-router-dom";
 

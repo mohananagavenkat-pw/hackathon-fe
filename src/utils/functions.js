@@ -1,6 +1,6 @@
 /** @format */
 
-import { LocalStorage } from "./hooks/utils/classes";
+import { LocalStorage } from "../hooks/utils/classes";
 
 export const validateEmail = (value) => {
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

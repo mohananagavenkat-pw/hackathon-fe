@@ -12,11 +12,13 @@ import Registration from "../pages/user/Registration";
 import Login from "../pages/Auth/Login";
 import SignUp from "../pages/Auth/SignUp";
 import { Navigate } from "react-router-dom";
+import CreateUpdateHackathon from "../components/CreateUpdateHackathon";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <Navigate to="/login" />,
+		children: [],
 	},
 
 	{
@@ -43,7 +45,10 @@ const router = createBrowserRouter([
 				<Admin />
 			</CheckProtectedRoute>
 		),
-		children: [{}],
+	},
+	{
+		path: "/admin/new",
+		element: <CreateUpdateHackathon />,
 	},
 
 	{

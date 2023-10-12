@@ -2,9 +2,9 @@
 
 import { Button, Input, Typography } from "@pwskills/rachnaui";
 import React, { useState } from "react";
-import { saveTokenAndRole, validateEmail } from "../../utils";
+import { saveTokenAndRole, validateEmail } from "../../utils/functions";
 import AuthApi from "../../apis/managers/authApi";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 	const [creds, setCreds] = useState({
