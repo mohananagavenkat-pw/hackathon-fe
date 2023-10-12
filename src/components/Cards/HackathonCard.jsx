@@ -5,8 +5,10 @@ import { Button, Grid } from "@mui/material";
 import React from "react";
 import amazonImage from "../../assets/amazon.svg";
 import Calendar from "../../assets/Calendar";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const HackathonCard = () => {
+	let navigate = useNavigate();
 	const iconMapFunction = (type) => {
 		switch (type) {
 			case "calendar":
@@ -37,6 +39,9 @@ const HackathonCard = () => {
 			secondaryText: "Secondary Text",
 		},
 	];
+	const myFunction = () => {
+		navigate("/hackathon/:name/:id/live");
+	};
 	return (
 		<div
 			className="flex flex-col w-full gap-4 p-2 bg-white"
@@ -61,6 +66,7 @@ const HackathonCard = () => {
 					</div>
 					<div>
 						<button
+							onClick={() => myFunction()}
 							style={{
 								border: "1px solid #E97862",
 								color: "#E97862",

@@ -1,17 +1,22 @@
-import React from "react";
-import { Button, Typography } from "@pwskills/rachnaui";
-import { ArrowForward } from "@pwskills/rachnaui/Icons";
+import React, { useState } from "react";
+import { Button, Dialog, IconButton, Typography } from "@pwskills/rachnaui";
+import {
+  ArrowForward,
+  Close,
+  InformationCircle,
+} from "@pwskills/rachnaui/Icons";
 
 function WhyHackathonComponent() {
+  const [openDialog, setOpenDialog] = useState(false);
   return (
-    <div className="flex flex-row justify-between pb-7">
+    <div className="flex flex-row justify-between pb-7 flex-wrap gap-4">
       <img
         src="images/WhyHackathonBg.svg"
         alt="WhyHackathonBg"
         className="absolute"
       />
-      <div className="flex flex-col gap-[179px]">
-        <div className="flex flex-col gap-[56px] w-[300px]">
+      <div className="flex flex-col medium:!gap-[179px]">
+        <div className="flex flex-col gap-[56px] w-full medium:!w-[300px]">
           <div className="flex gap-6 items-start">
             <div className="w-[4px] h-[52px] bg-[#E97862]"></div>
             <Typography
@@ -38,7 +43,7 @@ function WhyHackathonComponent() {
           height={192}
         />
       </div>
-      <div className="flex flex-col gap-[56px] pt-[164px]">
+      <div className="flex flex-col  gap-4 medium:gap-[56px] !pt-[164px]">
         <div className="flex flex-col w-[302px] gap-6">
           <div className="flex flex-col gap-3">
             <img
@@ -66,6 +71,9 @@ function WhyHackathonComponent() {
             variant="text"
             endIcon={<ArrowForward />}
             className="bg-white px-[15px] py-[5px] w-fit shadow-[0_1px_8px_0px_rgba(0,0,0,0.08)]"
+            onClick={() => {
+              setOpenDialog(true);
+            }}
           >
             Attempt Mock
           </Button>
@@ -97,12 +105,15 @@ function WhyHackathonComponent() {
             variant="text"
             endIcon={<ArrowForward />}
             className="bg-white px-[15px] py-[5px] w-fit shadow-[0_1px_8px_0px_rgba(0,0,0,0.08)]"
+            onClick={() => {
+              setOpenDialog(true);
+            }}
           >
             View Job
           </Button>
         </div>
       </div>
-      <div className="flex flex-col gap-[56px] pt-[244px]">
+      <div className="flex flex-col gap-4 medium:gap-[56px] min-[972px]:!pt-[244px]">
         <div className="flex flex-col w-[302px] gap-6">
           <div className="flex flex-col gap-3">
             <img
@@ -130,6 +141,9 @@ function WhyHackathonComponent() {
             variant="text"
             endIcon={<ArrowForward />}
             className="bg-white px-[15px] py-[5px] w-fit shadow-[0_1px_8px_0px_rgba(0,0,0,0.08)]"
+            onClick={() => {
+              setOpenDialog(true);
+            }}
           >
             My Skills
           </Button>
@@ -160,11 +174,58 @@ function WhyHackathonComponent() {
             variant="text"
             endIcon={<ArrowForward />}
             className="bg-white px-[15px] py-[5px] w-fit shadow-[0_1px_8px_0px_rgba(0,0,0,0.08)]"
+            onClick={() => {
+              setOpenDialog(true);
+            }}
           >
             Dashboard
           </Button>
         </div>
       </div>
+      <Dialog
+        open={openDialog}
+        closeEnable={false}
+        isOutSideClick
+        closeModal={() => {
+          setOpenDialog(false);
+        }}
+        titleWrapperClass="!pb-0"
+        className="!px-[50px] !py-[35px] !w-fit rounded "
+      >
+        <div className="">
+          <div className="flex flex-col gap-6">
+            <div className="flex gap-x-2 justify-between relative !w-[274px] medium:!w-[351px]">
+              <Typography
+                component="h3"
+                variant="bold"
+                className=" font-nunito"
+              >
+                Info
+              </Typography>
+
+              <IconButton
+                onClick={() => {
+                  setOpenDialog(false);
+                }}
+              >
+                <Close />
+              </IconButton>
+            </div>
+            <div className="">
+              <div className="flex items-center gap-3">
+                <InformationCircle />
+                <Typography
+                  className="text-gray-850 self-start  "
+                  variant="regular"
+                  component="h4"
+                >
+                  This feature will be available soon !!!
+                </Typography>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Dialog>
     </div>
   );
 }
