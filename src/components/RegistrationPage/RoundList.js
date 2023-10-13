@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Input from '@mui/material/Input'
+import HackathonApi from "../../apis/managers/hackathonPageApi";
 const style = {
   position: 'absolute',
   top: '50%',
@@ -33,6 +34,10 @@ const RounderList = () => {
   useEffect(() => {
     getRoundList('6526456012c1c19cb8f894c9')
   }, [])
+  const submit = async () => {
+    const submit = await HackathonApi.submitHackathon()
+    setOpen(false)
+  }
   return (
     <div className="flex flex-col">
       <div>
@@ -77,7 +82,7 @@ const RounderList = () => {
           <div className="mt-7"></div>
           <div >
             <Typography color="error" fontSize="body-sm">Once Submitted you can't edit</Typography>
-            <div><Button variant="outlined" sx={{ mt: 1 }}>Submit</Button>
+            <div><Button variant="outlined" sx={{ mt: 1 }} onClick={submit}>Submit</Button>
             </div>
           </div>
 
