@@ -15,159 +15,167 @@ import { apiFunction } from "../../apis/api";
 import RounderList from "../../components/RegistrationPage/RoundList";
 
 const HackathonDetails = () => {
-  const token = localStorage.getItem("token")
-  const [id , setId]  = useState('')
-  const [dataToShow , setDataToShow] = useState("")
-  const [hackathonDetails , setHackathonDetails] = useState({
-    "title": "testing one",
-    "hackathonType": "project",
-    "hackathonMode": "practice",
-    "submissionType": "team",
-    "teamSize": 1,
-    "startDate": {
-      "$date": "2023-07-25T11:19:30.693Z"
+  const token = localStorage.getItem("token");
+  const [id, setId] = useState("");
+  const [dataToShow, setDataToShow] = useState("");
+  const [hackathonDetails, setHackathonDetails] = useState({
+    title: "testing one",
+    hackathonType: "project",
+    hackathonMode: "practice",
+    submissionType: "team",
+    teamSize: 1,
+    startDate: {
+      $date: "2023-07-25T11:19:30.693Z",
     },
-    "maxStartDate": {
-      "$date": "2023-07-25T11:29:40.693Z"
+    maxStartDate: {
+      $date: "2023-07-25T11:29:40.693Z",
     },
-    "endDate": {
-      "$date": "2023-08-25T11:29:40.693Z"
+    endDate: {
+      $date: "2023-08-25T11:29:40.693Z",
     },
-    "resultDate": {
-      "$date": "2023-09-27T11:49:30.693Z"
+    resultDate: {
+      $date: "2023-09-27T11:49:30.693Z",
     },
-    "details": "hello one kkkkkk",
-    "companyDetails": {
-      "name": "pw skill",
-      "place": "noida",
-      "companyType": "ed-tech",
-      "image": ""
+    details: "hello one kkkkkk",
+    companyDetails: {
+      name: "pw skill",
+      place: "noida",
+      companyType: "ed-tech",
+      image: "",
     },
-    "instruction": "hhhhh hibjfd kdsbfosd sdfnios",
-    "questions": [
+    instruction: "hhhhh hibjfd kdsbfosd sdfnios",
+    questions: [
       {
-        "question": "create a project on React-js",
-        "questionType": "text",
-        "outOf": 100,
-        "_id": {
-          "$oid": "6526456012c1c19cb8f894ca"
-        }
-      }
+        question: "create a project on React-js",
+        questionType: "text",
+        outOf: 100,
+        _id: {
+          $oid: "6526456012c1c19cb8f894ca",
+        },
+      },
     ],
-    "createdAt": {
-      "$date": "2023-10-11T06:49:04.683Z"
+    createdAt: {
+      $date: "2023-10-11T06:49:04.683Z",
     },
-    "updatedAt": {
-      "$date": "2023-10-11T06:51:18.800Z"
+    updatedAt: {
+      $date: "2023-10-11T06:51:18.800Z",
     },
-    "__v": 0
-  })
+    __v: 0,
+  });
   const apiCallFunction = (filter) => {
     const params = {
-      "hackathonId" : id,
-      "filterInformation": filter
-    }; 
-    apiFunction( "get" ,"/user/hackathon-details" , params , '').then((resp) => {
-      // console.log("details" , resp.data.data[0][filter])
-      setDataToShow(resp.data.data[0]?.filter)
-     })
-     .catch((err) => {
-      console.log("err")
-     })
-  }
- useEffect(() => {
- if(window.location.pathname){
-  const pathnameArray = window.location.pathname.split("/")
-  console.log("pathnameArray" , pathnameArray)
-  const params = {
-    "hackathonId" : pathnameArray[3],
-    "filterInformation": "About"
-  }; 
-  setId(pathnameArray[3],)
-  // 'About Prizes Timelines Rules'
-  apiCallFunction("About")
- }
- },[window.location.pathname])
-  const navigate = useNavigate()
+      hackathonId: id,
+      filterInformation: filter,
+    };
+    apiFunction("get", "/user/hackathon-details", params, "")
+      .then((resp) => {
+        // console.log("details" , resp.data.data[0][filter])
+        setDataToShow(resp.data.data[0]?.filter);
+      })
+      .catch((err) => {
+        console.log("err");
+      });
+  };
   useEffect(() => {
-  
-  },[])
+    if (window.location.pathname) {
+      const pathnameArray = window.location.pathname.split("/");
+      console.log("pathnameArray", pathnameArray);
+      const params = {
+        hackathonId: pathnameArray[3],
+        filterInformation: "About",
+      };
+      setId(pathnameArray[3]);
+      // 'About Prizes Timelines Rules'
+      apiCallFunction("About");
+    }
+  }, [window.location.pathname]);
+  const navigate = useNavigate();
+  useEffect(() => {}, []);
   const tabs = [
     {
       text: "About Hackathon",
       component: <p>About Hackathon</p>,
       value: "Tab1",
       disabled: false,
-      onClick: () => apiCallFunction("About")
+      onClick: () => apiCallFunction("About"),
     },
     {
       text: "Rules",
       component: <p>Hackathon Rules</p>,
       value: "Tab2",
       disabled: false,
-      onClick: () => apiCallFunction("Rules")
+      onClick: () => apiCallFunction("Rules"),
     },
     {
       text: "Prizes",
       component: <p>hackathon Prizes</p>,
       value: "Prizes",
       disabled: false,
-      onClick: () => apiCallFunction("Prizes")
+      onClick: () => apiCallFunction("Prizes"),
     },
     {
       text: "Timelines",
       component: <p>Hackathon Timelines</p>,
       value: "timelines",
       disabled: false,
-      onClick: () => apiCallFunction("Timeline")
+      onClick: () => apiCallFunction("Timeline"),
     },
     {
       text: "Results",
       component: <p>Results</p>,
       value: "results",
-      disabled: !localStorage.getItem(token),
-      onClick: () => apiCallFunction("About")
+      disabled: localStorage.getItem(token),
+      onClick: () => apiCallFunction("About"),
     },
     {
       text: "Rounds",
       component: <RounderList />,
       value: "rounds",
-      onClick: () => null
+      onClick: () => null,
     },
     {
       text: "DiscussionTab",
       component: <DiscussionTab />,
       value: "DiscussionTab",
-      disabled: !localStorage.getItem(token),
-      onClick: () => null
+      disabled: localStorage.getItem(token),
+      onClick: () => null,
     },
   ];
   const handleRouting = (type) => {
-      switch(type) {
-        case "singup" : 
-        navigate('/sign-up') 
+    switch (type) {
+      case "singup":
+        navigate("/sign-up");
         break;
-        case "signin" : 
-        navigate('/signin') 
+      case "signin":
+        navigate("/signin");
         break;
-        default : 
-        navigate('/sign-up') 
+      default:
+        navigate("/sign-up");
         break;
-      }
-  }
+    }
+  };
   return (
     <div className="flex flex-col relative ">
       <div className={`flex bg-white justify-center items-center py-4 w-full `}>
         <div className={`flex justify-between w-[85%]`}>
-        <PWskills color = {"black"}/>
-        {token ?  <div className="w-[50px] h-[50px] bg-yellow-600 rounded-[50%] flex justify-center items-center text-white">user</div> : <div className="flex gap-2">
-        
-        <Button onClick={() => handleRouting('signin')}>Sign In</Button>
-        <Button variant="secondary" onClick={() => handleRouting('signup')}>Sign Up</Button>
-      </div>}
+          <PWskills color={"black"} />
+          {token ? (
+            <div className="w-[50px] h-[50px] bg-yellow-600 rounded-[50%] flex justify-center items-center text-white">
+              user
+            </div>
+          ) : (
+            <div className="flex gap-2">
+              <Button onClick={() => handleRouting("signin")}>Sign In</Button>
+              <Button
+                variant="secondary"
+                onClick={() => handleRouting("signup")}
+              >
+                Sign Up
+              </Button>
+            </div>
+          )}
         </div>
-      
-    </div>
+      </div>
       {/* <Container className="p-4  min-w-[100%] relative"> */}
       <div className="absolute -z-10 ">
         <img src={Hackathonbg} alt="hackathonbg" />
@@ -202,7 +210,7 @@ const HackathonDetails = () => {
           alignItems: "center",
         }}
       >
-        <HackathonCard hackathonDetails = {hackathonDetails}/>
+        <HackathonCard hackathonDetails={hackathonDetails} />
       </div>
       {/* </Container> */}
     </div>
