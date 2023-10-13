@@ -9,7 +9,8 @@ const useAuth = () => {
       isLoading: state.isLoading,
 
       setToken: state.setToken,
-      fetchProfile: state.fetchProfile
+      fetchProfile: state.fetchProfile,
+      signupFunction: state.signupFunction
     }),
   ))
   return state

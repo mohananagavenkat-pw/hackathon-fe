@@ -12,12 +12,12 @@ const CheckProtectedRoute = ({ children, roleArg }) => {
 
 	useEffect(() => {
 		if (isAdmin === null) {
-			navigate("/login");
+			navigate("/user");
 		}
 		if (role !== roleArg) {
 			LocalStorage.remove("isAdmin");
 			LocalStorage.remove("token");
-			navigate("/login");
+			navigate("/user");
 		}
 	}, [isAdmin]);
 

@@ -10,3 +10,6 @@ export const calculateTimeDifference = (a, b) => {
   const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
   return { seconds, minutes, hours, days };
 };
+export const testFunction = () => {
+    return "this is test function"
+}

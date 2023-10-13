@@ -1,4 +1,4 @@
-import { Button } from '@pwskills/rachnaui'
+import { Button, TextArea } from '@pwskills/rachnaui'
 import React, { useEffect, useState } from 'react'
 import { useTimer } from '../../hooks/timer/useTimer'
 import { calculateTimeDifference } from '../../hooks/utils/genericFunction'
@@ -10,11 +10,12 @@ const Live = () =>  {
        console.log("catchObj" , catchObj)
       },[])
   return (
-    <div>
+    <div className='flex justify-center items-center'>
         <div>
         {hour < 10 ? `0${hour}` : hour} : {minutes < 10 ? `0${minutes}`: minutes } : {seconds < 10 ? `0${seconds}` : seconds}
         </div>
         <Button disabled = {hour === 0 && minutes === 0 && seconds === 0}>Submit</Button>
+        <TextArea />
         </div>
   )
 }
