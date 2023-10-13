@@ -24,12 +24,12 @@ const HackathonCard = ({hackathonDetails}) => {
 		{
 			icon: "calendar",
 			primaryText: "Starts On",
-			secondaryText: "01/11/2023",
+			secondaryText: "10/10/2023",
 		},
 		{
 			icon: "calendar",
 			primaryText: "Ends On",
-			secondaryText: "07/11/2023",
+			secondaryText: "17/10/2023",
 		},
 		{
 			icon: "group",
@@ -64,7 +64,7 @@ const HackathonCard = ({hackathonDetails}) => {
 					</div>
 					<div>
 						<button
-							onClick={() => myFunction()}
+							// onClick={() => myFunction()}
 							style={{
 								border: "1px solid #E97862",
 								color: "#E97862",

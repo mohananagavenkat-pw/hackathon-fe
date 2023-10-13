@@ -17,12 +17,13 @@ const ApplicationTab = ({ options, direction }) => {
           } gap-2 p-4 `}
           style={{ background: "white" , borderRadius : "8px" , width : "20%" , height: "600px"}}
         >
-          {options.map((optionSingleObj) => (
-            <div
+          {options.map((optionSingleObj) => 
+             !optionSingleObj?.disabled && 
+              <div
               className={`flex ${
                 direction === "row" ? "flex-col" : "flex-row"
               } cursor-pointer justify-start items-center gap-2`}
-              onClick={() => setActiveTab(optionSingleObj)}
+              onClick={() => {setActiveTab(optionSingleObj) ;optionSingleObj.onClick() }}
             >
               {direction === "column" && (
                 <div
@@ -62,7 +63,9 @@ const ApplicationTab = ({ options, direction }) => {
                 </div>
               )}
             </div>
-          ))}
+            
+            
+          )}
         </div>
         <div item style={{ background: "white ", padding: "30px" , width:"80%" , borderRadius : "8px"  }}>
           {activeTab.component}
