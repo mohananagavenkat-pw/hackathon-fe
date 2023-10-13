@@ -16,14 +16,15 @@ class HackathonApi {
       comment: "this is my submission",
       "title": "Abc hackathon"
     }
-    apiFunction("post", "/user-hackathon/submit", data, "")
-      .then((resp) => {
-        // console.log("details" , resp.data.data[0][filter])
-        // setDataToShow(resp.data.data[0]?.filter);
-      })
-      .catch((err) => {
-        console.log("err");
-      });
+    await post('/user-hackathon/submit', data)
+    // apiFunction("post", "/user-hackathon/submit", "", data)
+    //   .then((resp) => {
+    //     // console.log("details" , resp.data.data[0][filter])
+    //     // setDataToShow(resp.data.data[0]?.filter);
+    //   })
+    //   .catch((err) => {
+    //     console.log("err");
+    //   });
     // return post(`/user-hackathon/submit`, data)
   }
 }
