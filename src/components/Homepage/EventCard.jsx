@@ -83,7 +83,7 @@ function EventCard({ hackathonEvent, eventTime }) {
             <Button
               variant="primary"
               size="small"
-              onClick={navigate(
+              onClick={() => navigate(
                 `/hackathon/${hackathonEvent.title}/${hackathonEvent._id}`
               )}
             >
@@ -98,7 +98,7 @@ function EventCard({ hackathonEvent, eventTime }) {
               variant="primary"
               size="small"
               className="font-nunito"
-              onClick={navigate(
+              onClick={() => navigate(
                 `/hackathon/${hackathonEvent.title}/${hackathonEvent._id}`
               )}
             >
@@ -119,7 +119,7 @@ function EventCard({ hackathonEvent, eventTime }) {
               variant="primary"
               size="small"
               className=" whitespace-nowrap"
-              onClick={navigate(
+              onClick={() => navigate(
                 `/hackathon/${hackathonEvent.title}/${hackathonEvent._id}`
               )}
             >
