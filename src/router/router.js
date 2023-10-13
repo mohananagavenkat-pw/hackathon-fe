@@ -88,7 +88,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/admin/hackathon/:name/:id",
+    path: "/admin/hackathon/hackathonId/:hackathonId/questionId/:questionId",
     element: (
       // <CheckProtectedRoute roleArg="user">
       <HackathonTeamViewPage />
