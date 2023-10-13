@@ -24,8 +24,6 @@ class HackathonApi {
       .catch((err) => {
         console.log("err");
       });
-
-
     // return post(`/user-hackathon/submit`, data)
   }
 }
