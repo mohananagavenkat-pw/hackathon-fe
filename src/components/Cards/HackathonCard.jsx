@@ -7,7 +7,7 @@ import amazonImage from "../../assets/amazon.svg";
 import Calendar from "../../assets/Calendar";
 import { Navigate, useNavigate } from "react-router-dom";
 
-const HackathonCard = () => {
+const HackathonCard = ({hackathonDetails}) => {
 	let navigate = useNavigate();
 	const iconMapFunction = (type) => {
 		switch (type) {
@@ -59,9 +59,9 @@ const HackathonCard = () => {
 				</div>
 				<div className="flex justify-between w-full" style={{ padding: "8px" }}>
 					<div className="flex flex-col gap-1">
-						<p style={{ fontSize: "24px", fontWeight: 700 }}>Hackathon Name</p>
+						<p style={{ fontSize: "24px", fontWeight: 700 }}>{hackathonDetails?.title}</p>
 						<p style={{ fontSize: "16px", fontWeight: 400, color: "#757575" }}>
-							Company Name
+						{hackathonDetails?.title}
 						</p>
 					</div>
 					<div>

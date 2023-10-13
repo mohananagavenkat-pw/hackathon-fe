@@ -10,7 +10,6 @@ import { apiFunction } from "../../apis/api";
 
 const SignUp = () => {
 	const signupFunction = useAuth().signupFunction;
-	const token = useAuth().token;
 	const navigate = useNavigate();
 	const [creds, setCreds] = useState({
 		name: "",
