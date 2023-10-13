@@ -163,7 +163,7 @@ function Homepage() {
 
   const fetchHackathons = () => {
     fetch(
-      `${BASE_API_URL}/admin/?hackathonId=&hackathonType=&skip=1&limit=10&search`
+      `${BASE_API_URL}/admin/?hackathonId=&hackathonType=&skip=1&limit=100&search`
     )
       .then((res) => res.json())
       .then((data) => {

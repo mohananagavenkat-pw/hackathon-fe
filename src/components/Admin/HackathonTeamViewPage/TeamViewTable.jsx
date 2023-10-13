@@ -109,13 +109,13 @@ function TeamViewTable() {
                   <TableCell align="center">{team.Results.title}</TableCell>
                   <TableCell align="center">
                     <Chip
-                      label={team.Results.status}
+                      label={
+                        team.answers.length > 0 ? "Evaluated" : "Submitted"
+                      }
                       variant="filled"
                       style={{
                         backgroundColor:
-                          team.Results.status === "Submitted"
-                            ? green[100]
-                            : blue[100],
+                          team.answers.length > 0 ? green[100] : blue[100],
                         color: "black",
                         padding: "20px",
                       }}
@@ -128,8 +128,9 @@ function TeamViewTable() {
                         onClick={() => {
                           setShowEvaluateModal(true);
                           setQuestion(team.question);
-                          setAnswer(team.answer);
-                          setUserId(team.teams[0].userId);
+                          setAnswer(team.answers);
+                          setUserId(team.Results.userId);
+                          console.log(team);
                         }}
                         className="flex justify-center !bg-blue-50"
                       >
