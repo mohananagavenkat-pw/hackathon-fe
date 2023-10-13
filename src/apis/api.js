@@ -9,6 +9,7 @@ const getHeaders = () => ({
   });
 
   export function apiFunction( method, endpoint, params, data) {
+    console.log('params' , params)
     return new Promise((resolve, reject) => {
       axios({
         method,

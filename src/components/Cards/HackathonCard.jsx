@@ -4,6 +4,7 @@ import { Button, Grid } from "@mui/material";
 // import pwSkillsLogo from  'public/images/PwSkillsLogo.svg'
 import React from "react";
 import amazonImage from "../../assets/amazon.svg";
+import community from "../../assets/community.svg";
 import Calendar from "../../assets/Calendar";
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -13,6 +14,8 @@ const HackathonCard = ({hackathonDetails}) => {
 		switch (type) {
 			case "calendar":
 				return <Calendar />;
+				case "group":
+				return <img src={community} alt='community'/>;
 			default:
 				return <Calendar />;
 		}
@@ -20,23 +23,18 @@ const HackathonCard = ({hackathonDetails}) => {
 	const iconTextArray = [
 		{
 			icon: "calendar",
-			primaryText: "Primary Text",
-			secondaryText: "Secondary Text",
+			primaryText: "Starts On",
+			secondaryText: "10/10/2023",
 		},
 		{
 			icon: "calendar",
-			primaryText: "Primary Text",
-			secondaryText: "Secondary Text",
+			primaryText: "Ends On",
+			secondaryText: "17/10/2023",
 		},
 		{
-			icon: "Icon",
-			primaryText: "Primary Text",
-			secondaryText: "Secondary Text",
-		},
-		{
-			icon: "Icon",
-			primaryText: "Primary Text",
-			secondaryText: "Secondary Text",
+			icon: "group",
+			primaryText: "Team Size",
+			secondaryText: "1",
 		},
 	];
 	const myFunction = () => {
@@ -66,7 +64,7 @@ const HackathonCard = ({hackathonDetails}) => {
 					</div>
 					<div>
 						<button
-							onClick={() => myFunction()}
+							// onClick={() => myFunction()}
 							style={{
 								border: "1px solid #E97862",
 								color: "#E97862",
@@ -82,7 +80,7 @@ const HackathonCard = ({hackathonDetails}) => {
 					</div>
 				</div>
 			</div>
-			<div className="flex justify-center items-center gap-4">
+			<div className="flex justify-center items-center gap-6">
 				{iconTextArray.map((obj, index) => (
 					<div className="flex gap-2">
 						{iconMapFunction(obj.icon)}

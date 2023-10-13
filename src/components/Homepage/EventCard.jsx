@@ -4,8 +4,10 @@ import React, { useEffect, useState } from "react";
 import { Button, Card, Typography } from "@pwskills/rachnaui";
 import SocialShareModal from "../Common/SocialShareModal";
 import CountdownTimer from "./CountdownTimer";
+import { useNavigate } from "react-router-dom";
 
 function EventCard({ hackathonEvent, eventTime }) {
+  const navigate = useNavigate();
   console.log(eventTime);
   const [openShare, setOpenShare] = useState(false);
 
@@ -78,7 +80,13 @@ function EventCard({ hackathonEvent, eventTime }) {
         </div>
         {eventTime === "live" ? (
           <div className="flex gap-3 items-center">
-            <Button variant="primary" size="small">
+            <Button
+              variant="primary"
+              size="small"
+              onClick={() => navigate(
+                `/hackathon/${hackathonEvent.title}/${hackathonEvent._id}`
+              )}
+            >
               Compete
             </Button>
 
@@ -86,7 +94,14 @@ function EventCard({ hackathonEvent, eventTime }) {
           </div>
         ) : eventTime === "upcoming" ? (
           <div className="flex gap-3 items-center">
-            <Button variant="primary" size="small" className="font-nunito">
+            <Button
+              variant="primary"
+              size="small"
+              className="font-nunito"
+              onClick={() => navigate(
+                `/hackathon/${hackathonEvent.title}/${hackathonEvent._id}`
+              )}
+            >
               Register
             </Button>
             <Typography
@@ -104,6 +119,9 @@ function EventCard({ hackathonEvent, eventTime }) {
               variant="primary"
               size="small"
               className=" whitespace-nowrap"
+              onClick={() => navigate(
+                `/hackathon/${hackathonEvent.title}/${hackathonEvent._id}`
+              )}
             >
               View Details
             </Button>

@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ApplicationTab from "../../components/ApplicationTab";
 import HackathonCard from "../../components/Cards/HackathonCard";
 import hackathonImage from "../../assets/hackathonImage.svg";
@@ -11,10 +11,13 @@ import { Button } from "@pwskills/rachnaui";
 import PWskills from "../../assets/PWskills";
 import { useNavigate } from "react-router-dom";
 import DiscussionTab from "../../components/RegistrationPage/DiscussionTab";
+import { apiFunction } from "../../apis/api";
 import RounderList from "../../components/RegistrationPage/RoundList";
 
 const HackathonDetails = () => {
   const token = localStorage.getItem("token")
+  const [id , setId]  = useState('')
+  const [dataToShow , setDataToShow] = useState("")
   const [hackathonDetails , setHackathonDetails] = useState({
     "title": "testing one",
     "hackathonType": "project",
@@ -59,49 +62,84 @@ const HackathonDetails = () => {
     },
     "__v": 0
   })
-
+  const apiCallFunction = (filter) => {
+    const params = {
+      "hackathonId" : id,
+      "filterInformation": filter
+    }; 
+    apiFunction( "get" ,"/user/hackathon-details" , params , '').then((resp) => {
+      // console.log("details" , resp.data.data[0][filter])
+      setDataToShow(resp.data.data[0]?.filter)
+     })
+     .catch((err) => {
+      console.log("err")
+     })
+  }
+ useEffect(() => {
+ if(window.location.pathname){
+  const pathnameArray = window.location.pathname.split("/")
+  console.log("pathnameArray" , pathnameArray)
+  const params = {
+    "hackathonId" : pathnameArray[3],
+    "filterInformation": "About"
+  }; 
+  setId(pathnameArray[3],)
+  // 'About Prizes Timelines Rules'
+  apiCallFunction("About")
+ }
+ },[window.location.pathname])
   const navigate = useNavigate()
+  useEffect(() => {
+  
+  },[])
   const tabs = [
     {
       text: "About Hackathon",
-      component: <p>This is Hackathon Details</p>,
+      component: <p>About Hackathon</p>,
       value: "Tab1",
+      disabled: false,
+      onClick: () => apiCallFunction("About")
     },
     {
       text: "Rules",
       component: <p>Hackathon Rules</p>,
       value: "Tab2",
+      disabled: false,
+      onClick: () => apiCallFunction("Rules")
     },
     {
       text: "Prizes",
-      component: <p>Hackathon Prizes</p>,
+      component: <p>hackathon Prizes</p>,
       value: "Prizes",
+      disabled: false,
+      onClick: () => apiCallFunction("Prizes")
     },
     {
       text: "Timelines",
-      component: <p>Hackathon Timeline</p>,
+      component: <p>Hackathon Timelines</p>,
       value: "timelines",
+      disabled: false,
+      onClick: () => apiCallFunction("Timeline")
     },
     {
       text: "Results",
-      component: <p>Hackathon Results</p>,
+      component: <p>Results</p>,
       value: "results",
+      disabled: !localStorage.getItem(token),
+      onClick: () => apiCallFunction("About")
     },
     {
       text: "Rounds",
       component: <RounderList />,
       value: "rounds",
+      onClick: () => null
     },
     {
       text: "DiscussionTab",
       component: <DiscussionTab />,
-      value: "Discussion",
-    },
-    // DiscussionTab
-    {
-      text: "FAQs",
-      component: <p>Hackathon FAQs</p>,
-      value: "faqs",
+      value: "DiscussionTab",
+      disabled: !localStorage.getItem(token),
+      onClick: () => null
     },
   ];
   const handleRouting = (type) => {
