@@ -4,8 +4,7 @@ import { Typography } from "@pwskills/rachnaui";
 import React, { useState } from "react";
 import Editor from "../../CkEditor";
 
-const Details = () => {
-	const [details, setDetails] = useState("");
+const Details = ({ hackathonData, setHackathonData }) => {
 	return (
 		<div className="flex-col">
 			<div>
@@ -15,7 +14,12 @@ const Details = () => {
 			</div>
 
 			<div>
-				<Editor data={details} setData={setDetails} />
+				<Editor
+					data={hackathonData?.details}
+					setData={(e) => {
+						setHackathonData({ ...hackathonData, details: e });
+					}}
+				/>
 			</div>
 		</div>
 	);

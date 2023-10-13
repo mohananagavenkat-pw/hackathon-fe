@@ -6,6 +6,7 @@ import { get, post } from "../client";
 const token = localStorage.getItem("token");
 
 class AdminApi {
+
   static async createHackathon(payload) {
     return post("/admin");
   }
