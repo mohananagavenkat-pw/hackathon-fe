@@ -10,6 +10,7 @@ import { Container } from "@pwskills/rachnaui";
 import { Button } from "@pwskills/rachnaui";
 import PWskills from "../../assets/PWskills";
 import DiscussionTab from "../../components/RegistrationPage/DiscussionTab";
+import RounderList from "../../components/RegistrationPage/RoundList";
 
 const HackathonDetails = () => {
   const tabs = [
@@ -39,9 +40,14 @@ const HackathonDetails = () => {
       value: "results",
     },
     {
+      text: "Rounds",
+      component: <RounderList />,
+      value: "rounds",
+    },
+    {
       text: "DiscussionTab",
       component: <DiscussionTab />,
-      value: "DiscussionTab",
+      value: "Discussion",
     },
     // DiscussionTab
     {
