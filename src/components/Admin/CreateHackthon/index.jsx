@@ -51,7 +51,10 @@ const CreateUpdateHackathon = () => {
 				/>
 			</div>
 			<div>
-				<HackathonDates />
+				<HackathonDates
+					hackathonData={hackathonData}
+					setHackathonData={setHackathonData}
+				/>
 			</div>
 			<div>
 				<HackathonPrices />

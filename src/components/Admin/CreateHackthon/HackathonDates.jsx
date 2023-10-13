@@ -5,8 +5,9 @@ import React, { useState } from "react";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-const HackathonDates = () => {
-	const [startDate, setStartDate] = useState(null);
+
+const HackathonDates = ({ hackathonData, setHackathonData }) => {
+	// const [startDate, setStartDate] = useState(null);
 
 	return (
 		<LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -20,7 +21,12 @@ const HackathonDates = () => {
 						</div>
 						<div>
 							<DateTimePicker
-								onChange={(e) => setStartDate(e)}
+								onChange={(e) => {
+									setHackathonData({
+										...hackathonData,
+										startDate: new Date(e).toISOString(),
+									});
+								}}
 								className="w-[100%]"
 							/>
 						</div>
@@ -33,7 +39,12 @@ const HackathonDates = () => {
 						</div>
 						<div>
 							<DateTimePicker
-								onChange={(e) => setStartDate(e)}
+								onChange={(e) => {
+									setHackathonData({
+										...hackathonData,
+										maxStartDate: new Date(e).toISOString(),
+									});
+								}}
 								className="w-[100%]"
 							/>
 						</div>
@@ -48,7 +59,12 @@ const HackathonDates = () => {
 						</div>
 						<div>
 							<DateTimePicker
-								onChange={(e) => setStartDate(e)}
+								onChange={(e) => {
+									setHackathonData({
+										...hackathonData,
+										endDate: new Date(e).toISOString(),
+									});
+								}}
 								className="w-[100%]"
 							/>
 						</div>
@@ -61,7 +77,12 @@ const HackathonDates = () => {
 						</div>
 						<div>
 							<DateTimePicker
-								onChange={(e) => setStartDate(e)}
+								onChange={(e) => {
+									setHackathonData({
+										...hackathonData,
+										resultDate: new Date(e).toISOString(),
+									});
+								}}
 								className="w-[100%]"
 							/>
 						</div>
