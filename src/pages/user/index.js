@@ -7,14 +7,14 @@ import FooterComponent from "../../components/Footer";
 import "../../index.css";
 
 const User = () => {
-	return (
-		<div>
-			<Navbar />
-			<Homepage />
+  return (
+    <div>
+      <Navbar color={"white"} />
+      <Homepage />
 
-			<FooterComponent />
-		</div>
-	);
+      <FooterComponent />
+    </div>
+  );
 };
 
 export default User;

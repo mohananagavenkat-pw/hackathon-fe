@@ -1,21 +1,50 @@
 /** @format */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Typography } from "@pwskills/rachnaui";
 import SocialShareModal from "../Common/SocialShareModal";
+import CountdownTimer from "./CountdownTimer";
 
-function EventCard({ hackathonEvent }) {
+function EventCard({ hackathonEvent, eventTime }) {
+  console.log(eventTime);
   const [openShare, setOpenShare] = useState(false);
+
+  const getLiveOnTime = (dateInUST) => {
+    const date = new Date(dateInUST);
+    const day = date.getDate();
+    const month = date.toLocaleString("en-US", { month: "short" });
+    const year = date.getFullYear().toString().slice(-2);
+    const time = date.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+
+    return ` ${day} ${month} '${year} At ${time}`;
+  };
+
+  const getRegistrationTime = (dateInUST) => {
+    const date = new Date(dateInUST);
+    const day = date.getDate();
+    const month = date.toLocaleString("en-US", { month: "short" });
+    const year = date.getFullYear().toString().slice(-2);
+    const time = date.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+
+    return ` ${day} ${month} '${year}`;
+  };
 
   return (
     <div>
-      <Card className="m-0 flex flex-col p-3 gap-6 pb-6 shadow-light">
+      <Card className="m-0 flex flex-col p-3 gap-6 pb-6 shadow-light max-w-[406px]">
         <div className="flex flex-col gap-4">
           <img
             src="images/HackathonDummyImage.svg"
             alt="HackathonDummyImage"
-            min-width={382}
-            style={{ minWidth: "382px" }}
+            style={{ width: "382px" }}
           />
           <div className="flex  justify-between border-b-[1px] border-b-[#B7B7B7] pb-1">
             <Typography
@@ -42,27 +71,57 @@ function EventCard({ hackathonEvent }) {
             variant="bold"
             component="body-regular"
           >
-            {hackathonEvent.companyName}
+            {hackathonEvent.companyDetails
+              ? hackathonEvent.companyDetails.name
+              : "unknown company"}
           </Typography>
         </div>
-        <div className="flex gap-3 items-center">
-          <Button variant="primary" size="small">
-            Register
-          </Button>
-          <Typography
-            className="text-[#3D3D3D]"
-            variant="regular"
-            component="body-regular"
-          >
-            Registrations open till 19th Sep,2023
-          </Typography>
-        </div>
+        {eventTime === "live" ? (
+          <div className="flex gap-3 items-center">
+            <Button variant="primary" size="small">
+              Compete
+            </Button>
+
+            <CountdownTimer endDate={hackathonEvent.endDate} />
+          </div>
+        ) : eventTime === "upcoming" ? (
+          <div className="flex gap-3 items-center">
+            <Button variant="primary" size="small" className="font-nunito">
+              Register
+            </Button>
+            <Typography
+              className="text-[#3D3D3D]"
+              variant="regular"
+              component="body-regular"
+            >
+              {"Registrations open till " +
+                getRegistrationTime(hackathonEvent.endDate)}
+            </Typography>
+          </div>
+        ) : (
+          <div className="flex gap-3 items-center">
+            <Button
+              variant="primary"
+              size="small"
+              className=" whitespace-nowrap"
+            >
+              View Details
+            </Button>
+            <Typography
+              className="text-[#3D3D3D] font-nunito"
+              variant="regular"
+              component="body-regular"
+            >
+              {"Live on " + getLiveOnTime(hackathonEvent.startDate)}
+            </Typography>
+          </div>
+        )}
       </Card>
 
       <SocialShareModal
         modelOpen={openShare}
         setModelOpen={setOpenShare}
-        url={`${window.location.origin}/hackathon/name/id`}
+        url={`${window.location.origin}/hackathon/${hackathonEvent.title}/${hackathonEvent._id}`}
       />
     </div>
   );

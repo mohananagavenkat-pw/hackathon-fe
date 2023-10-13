@@ -87,6 +87,14 @@ const router = createBrowserRouter([
       </CheckProtectedRoute>
     ),
   },
+  {
+    path: "/admin/hackathon/:name/:id",
+    element: (
+      // <CheckProtectedRoute roleArg="user">
+      <HackathonTeamViewPage />
+      // </CheckProtectedRoute>
+    ),
+  },
 ]);
 
 export default router;
