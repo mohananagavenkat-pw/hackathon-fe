@@ -31,6 +31,7 @@ function EvaluateModal({
   userId,
   onEvaluate,
 }) {
+  console.log(answer);
   const [formData, setFormData] = useState({
     questionStatus: "evaluated",
   });
@@ -69,7 +70,7 @@ function EvaluateModal({
     try {
       // Replace the following with your actual API request code
       const apiResponse = await fetch(
-        `${BASE_API_URL}/admin/evaluate-hackathon/?hackathonId=6526456012c1c19cb8f894c9&questionId=6526456012c1c19cb8f894ca&userId=652527039203dfd69f89d47c`,
+        `${BASE_API_URL}/admin/evaluate-hackathon/?hackathonId=${hackathonId}&questionId=${questionId}&userId=${userId}`,
         {
           method: "POST",
           body: JSON.stringify(formData),
@@ -117,13 +118,13 @@ function EvaluateModal({
               <Grid item xs={12}>
                 <Typography variant="bold">Question</Typography>
                 <Typography variant="body2">
-                  {"Please submit the project idea"}
+                  {question && question.length > 0 && question[0].question}
                 </Typography>
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="bold">Solution</Typography>
                 <Typography variant="body2">
-                  {answer ? answer[0] : "dummy answer"}
+                  {answer && answer.length > 0 && answer[0].answer}
                 </Typography>
               </Grid>
 
