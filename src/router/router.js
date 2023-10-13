@@ -4,16 +4,15 @@ import { createBrowserRouter } from "react-router-dom";
 import User from "../pages/user";
 import Admin from "../pages/admin";
 import CheckProtectedRoute from "../hoc/CheckProtectedRoute";
-import Homepage from "../components/Homepage";
-import ApplicationTab from "../components/ApplicationTab";
-import { Typography } from "@mui/material";
 import HackathonDetails from "../pages/hackathon";
 import Registration from "../pages/user/Registration";
 import Login from "../pages/Auth/Login";
 import SignUp from "../pages/Auth/SignUp";
 import { Navigate } from "react-router-dom";
-import CreateUpdateHackathon from "../components/CreateUpdateHackathon";
+
 import Live from "../pages/hackathonLive";
+import CreateEditHackathon from "../pages/admin/CreateEditHackathon";
+import HackathonTeamViewPage from "../components/Admin/HackathonTeamViewPage";
 
 const router = createBrowserRouter([
 	{
@@ -23,7 +22,7 @@ const router = createBrowserRouter([
 	},
 
 	{
-		path: "/login",
+		path: "/signin",
 		element: <Login />,
 	},
 	{
@@ -39,51 +38,59 @@ const router = createBrowserRouter([
 		),
 	},
 
-	{
-		path: "/admin",
-		element: (
-			// <CheckProtectedRoute roleArg="admin">
-			<Admin />
-			// </CheckProtectedRoute>
-		),
-	},
-	{
-		path: "/admin/new",
-		element: <CreateUpdateHackathon />,
-	},
+  {
+    path: "/admin",
+    element: (
+      // <CheckProtectedRoute roleArg="admin">
+      <Admin />
+      // </CheckProtectedRoute>
+    ),
+  },
+  {
+    path: "/admin/create-hackathon",
+    element: <CreateEditHackathon />,
+  },
 
-	{
-		path: "/dashboard",
-		element: (
-			// <CheckProtectedRoute roleArg="user">
-			<User />
-			// </CheckProtectedRoute>
-		),
-	},
-	{
-		path: "/register",
-		element: (
-			// <CheckProtectedRoute roleArg="user">
-			<Registration />
-			// </CheckProtectedRoute>
-		),
-	},
-	{
-		path: "/hackathon/:name/:id",
-		element: (
-			// <CheckProtectedRoute roleArg="user">
-			<HackathonDetails />
-			// </CheckProtectedRoute>
-		),
-	},
-	{
-		path: "/hackathon/:name/:id/:status",
-		element: (
-			<CheckProtectedRoute role="user">
-				<Live />
-			</CheckProtectedRoute>
-		),
-	},
+  {
+    path: "/dashboard",
+    element: (
+      // <CheckProtectedRoute roleArg="user">
+      <User />
+      // </CheckProtectedRoute>
+    ),
+  },
+  {
+    path: "/register",
+    element: (
+      // <CheckProtectedRoute roleArg="user">
+      <Registration />
+      // </CheckProtectedRoute>
+    ),
+  },
+  {
+    path: "/hackathon/:name/:id",
+    element: (
+      // <CheckProtectedRoute roleArg="user">
+      <HackathonDetails />
+      // </CheckProtectedRoute>
+    ),
+  },
+  {
+    path: "/hackathon/:name/:id/:status",
+    element: (
+      <CheckProtectedRoute role="user">
+        <Live />
+      </CheckProtectedRoute>
+    ),
+  },
+  {
+    path: "/admin/hackathon/:name/:id",
+    element: (
+      // <CheckProtectedRoute roleArg="user">
+      <HackathonTeamViewPage />
+      // </CheckProtectedRoute>
+    ),
+  },
 ]);
 
 export default router;

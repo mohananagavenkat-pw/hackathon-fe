@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Container, Button, IconButton } from "@pwskills/rachnaui";
-import pwSkillsLogo from "../../assets/PwSkillsLogo.svg";
 import PWskills from "../../assets/PWskills";
 import { useNavigate } from "react-router-dom";
 function Navbar({color}) {
@@ -13,7 +12,7 @@ function Navbar({color}) {
       case "singup" : 
       navigate('/sign-up') 
       break;
-      case "singin" : 
+      case "signin" : 
       navigate('/signin') 
       break;
       default : 

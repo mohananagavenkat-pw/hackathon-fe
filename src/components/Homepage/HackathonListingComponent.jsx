@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Button, Typography, Container } from "@pwskills/rachnaui";
+import { Button, Typography, Container, Loader } from "@pwskills/rachnaui";
 import EventCard from "./EventCard";
 import { ArrowForward } from "@pwskills/rachnaui/Icons";
 import { Slider } from "@pwskills/rachnaui";
 import { classNames, randomId } from "@pwskills/rachnaui/utils";
 import useHomePage from "../../hooks/app/useHomePage";
+import { BASE_API_URL } from "../../constants/Config";
 
 function HackathonListingComponent() {
-  const fetchHackathons = useHomePage().fetchHackathons;
-  const resetHackathons = useHomePage().resetHackathons;
-  const { hackathons } = useHomePage();
+  //   const fetchHackathons = useHomePage().fetchHackathons;
+  //   const resetHackathons = useHomePage().resetHackathons;
+  //   const { hackathons } = useHomePage();
+
+  const [hackathons, setHackathons] = useState([]);
+  const [apiLoading, setApiLoading] = useState(false);
 
   const Filters = ["live", "upcoming", "previous"];
 
@@ -27,9 +31,29 @@ function HackathonListingComponent() {
 
   const [selectedFilter, setSelectedFilter] = useState(Filters[0]);
 
+  const fetchHackathons = async (eventTime) => {
+    setApiLoading(true);
+    fetch(`${BASE_API_URL}/user/?hackathonMode=${eventTime}&skip=1&limit=10`)
+      .then((res) => res.json())
+      .then((data) => {
+        setHackathons(data.data[0].mockTest);
+        console.log("result", data.data[0].mockTest);
+      })
+      .catch((err) => {})
+      .finally(() => {
+        setApiLoading(false);
+      });
+  };
+
+  //   useEffect(() => {
+  //     fetchHackathons(selectedFilter);
+  //     // fetchAPI();
+  //   }, [fetchHackathons, selectedFilter]);
+
   useEffect(() => {
+    setHackathons([]);
     fetchHackathons(selectedFilter);
-  }, [fetchHackathons, selectedFilter]);
+  }, [selectedFilter]);
 
   const handleFilterSelection = (filter) => {
     if (selectedFilter !== filter) {
@@ -78,13 +102,31 @@ function HackathonListingComponent() {
       </div>
       <div className="!w-full">
         <Slider
-          className="[&>*]:w-full gap-6 p-[10px] !pb-[20px]  "
-          iconWrapperClass="mt-6"
+          className="[&>div]:w-[420px] gap-6 p-[10px] !pb-[20px]  "
+          iconWrapperClass="mt-6 "
         >
-          {hackathons &&
-            hackathons.map((hackathonEvent) => {
-              return <EventCard hackathonEvent={hackathonEvent} />;
-            })}
+          {!apiLoading &&
+            (hackathons.length > 0 ? (
+              hackathons.map((hackathonEvent) => {
+                return (
+                  <EventCard
+                    hackathonEvent={hackathonEvent}
+                    eventTime={selectedFilter}
+                  />
+                );
+              })
+            ) : (
+              <div className="mx-auto h-[390px]  flex justify-center items-center ">
+                <Typography variant="semi-bold" component="h3">
+                  No data found!!
+                </Typography>
+              </div>
+            ))}
+          {apiLoading && (
+            <div className="mx-auto h-[390px]  flex justify-center items-center ">
+              <Loader className="h-full flex justify-center items-center" />
+            </div>
+          )}
         </Slider>
       </div>
     </div>

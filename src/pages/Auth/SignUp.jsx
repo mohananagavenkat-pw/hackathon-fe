@@ -11,6 +11,7 @@ import { apiFunction } from "../../apis/api";
 const SignUp = () => {
 	const signupFunction = useAuth().signupFunction;
 	const token = useAuth().token;
+	const navigate = useNavigate();
 	const [creds, setCreds] = useState({
 		name: "",
 		email: "",
@@ -23,7 +24,7 @@ const SignUp = () => {
 		login: "",
 	});
 
-	const navigate = useNavigate();
+	
 
 	const handleInputs = (e) => {
 		const { name, value } = e.target;
@@ -37,12 +38,16 @@ const SignUp = () => {
 		}
 	};
 
-	const handleLogin = async () => {
+	const handleSignUp = async () => {
 		console.log("function")
 	    apiFunction("post" , "/auth/signup" , "" , creds).then((resp) => {
 			console.log("response" , resp)
 			signupFunction(resp?.data)
 			localStorage.setItem("token" , resp?.data?.token)
+			if(resp?.data?.isAdmin)
+			navigate("/admin")
+		    else
+			navigate("/user")
 		}).catch((err) => {
 			console.log("err" , err)
 		})
@@ -148,10 +153,11 @@ const SignUp = () => {
 					</div>
 				)}
 				<div className="flex mt-5">
-					<Button className="w-full" onClick={handleLogin}>
+					<Button className="w-full" onClick={handleSignUp}>
 						Sing Up
 					</Button>
 				</div>
+				
 			</div>
 		</div>
 	);

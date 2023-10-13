@@ -10,6 +10,7 @@ import { Container } from "@pwskills/rachnaui";
 import { Button } from "@pwskills/rachnaui";
 import PWskills from "../../assets/PWskills";
 import { useNavigate } from "react-router-dom";
+import DiscussionTab from "../../components/RegistrationPage/DiscussionTab";
 
 const HackathonDetails = () => {
   const token = localStorage.getItem("token")
@@ -41,6 +42,12 @@ const HackathonDetails = () => {
       value: "results",
     },
     {
+      text: "DiscussionTab",
+      component: <DiscussionTab />,
+      value: "DiscussionTab",
+    },
+    // DiscussionTab
+    {
       text: "FAQs",
       component: <p>Hackathon FAQs</p>,
       value: "faqs",
@@ -51,7 +58,7 @@ const HackathonDetails = () => {
         case "singup" : 
         navigate('/sign-up') 
         break;
-        case "singin" : 
+        case "signin" : 
         navigate('/signin') 
         break;
         default : 
@@ -60,7 +67,6 @@ const HackathonDetails = () => {
       }
   }
   return (
-      
     <div className="flex flex-col relative ">
       <div className={`flex bg-white justify-center items-center py-4 w-full `}>
         <div className={`flex justify-between w-[85%]`}>
@@ -75,10 +81,10 @@ const HackathonDetails = () => {
     </div>
       {/* <Container className="p-4  min-w-[100%] relative"> */}
       <div className="absolute -z-10 ">
-        <img src = {Hackathonbg} alt="hackathonbg"/>
+        <img src={Hackathonbg} alt="hackathonbg" />
       </div>
       <div
-      className=""
+        className=""
         style={{
           background: "rgba(207, 207, 225, 1)",
           height: "300px",
@@ -88,13 +94,15 @@ const HackathonDetails = () => {
           backgroundImage: `url(${hackathonImage})`,
         }}
       ></div>
-      <div style = {{position : "relative"}} className=" flex items-center justify-center ">
+      <div
+        style={{ position: "relative" }}
+        className=" flex items-center justify-center "
+      >
         <div className="relative top-[240px] w-[85%]">
-        <ApplicationTab options={tabs} direction={"column"} />
+          <ApplicationTab options={tabs} direction={"column"} />
         </div>
-        
       </div>
-      
+
       <div
         style={{
           position: "absolute",
@@ -102,15 +110,13 @@ const HackathonDetails = () => {
           width: "85%",
           left: "7.3%",
           justifyContent: "center",
-          alignItems : "center",
-          
+          alignItems: "center",
         }}
       >
         <HackathonCard />
       </div>
       {/* </Container> */}
     </div>
-      
   );
 };
 

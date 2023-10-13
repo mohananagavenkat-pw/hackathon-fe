@@ -14,7 +14,7 @@ export const homePageSlice = create((set, get) => ({
 
   fetchHackathons: async (eventTime) => {
     const res = await HomePageApi.fetchHackathons(eventTime);
-    console.log(res);
+    console.log("res", res);
     set({ loading: false });
     set({ error: false });
     set({

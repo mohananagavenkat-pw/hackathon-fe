@@ -12,9 +12,9 @@ const User = () => {
 			<Navbar color = "white"/>
 			<Homepage />
 
-			<FooterComponent />
-		</div>
-	);
+      <FooterComponent />
+    </div>
+  );
 };
 
 export default User;
