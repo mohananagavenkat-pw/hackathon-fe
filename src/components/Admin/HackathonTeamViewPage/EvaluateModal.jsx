@@ -116,7 +116,9 @@ function EvaluateModal({
             <Grid container rowGap={2} spacing={2}>
               <Grid item xs={12}>
                 <Typography variant="bold">Question</Typography>
-                <Typography variant="body2">{"dummy question"}</Typography>
+                <Typography variant="body2">
+                  {"Please submit the project idea"}
+                </Typography>
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="bold">Solution</Typography>

@@ -262,9 +262,9 @@ function Homepage() {
                 <TableCell align="center" sx={{ fontWeight: "bold" }}>
                   Result Date
                 </TableCell>
-                <TableCell align="center" sx={{ fontWeight: "bold" }}>
+                {/* <TableCell align="center" sx={{ fontWeight: "bold" }}>
                   Edit
-                </TableCell>
+                </TableCell> */}
                 <TableCell align="center" sx={{ fontWeight: "bold" }}>
                   Delete
                 </TableCell>
@@ -285,27 +285,7 @@ function Homepage() {
                   }}
                 >
                   <TableCell align="center">{row.title}</TableCell>
-                  <TableCell
-                    align="center"
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                      gap: "10px",
-                      border: "none",
-                    }}
-                  >
-                    <Avatar>
-                      {row.hackathonType === "project" ? (
-                        <AccountTree />
-                      ) : row.hackathonType === "test" ? (
-                        <Quiz />
-                      ) : (
-                        <Assignment />
-                      )}
-                    </Avatar>
-                    {row.hackathonType}
-                  </TableCell>
+                  <TableCell align="center">{row.hackathonType}</TableCell>
                   <TableCell align="center">
                     <Chip
                       label={row.hackathonMode}
@@ -318,25 +298,7 @@ function Homepage() {
                       }}
                     />
                   </TableCell>
-                  <TableCell
-                    align="center"
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                      gap: "10px",
-                      border: "none",
-                    }}
-                  >
-                    <Avatar>
-                      {row.submissionType === "individual" ? (
-                        <Person />
-                      ) : (
-                        <Group />
-                      )}
-                    </Avatar>
-                    {row.submissionType}
-                  </TableCell>
+                  <TableCell align="center">{row.submissionType}</TableCell>
                   <TableCell align="center">{row.teamSize}</TableCell>
                   <TableCell align="center">
                     <Typography className=" whitespace-nowrap">
@@ -354,7 +316,7 @@ function Homepage() {
                       {getTimeInIST(row.resultDate)}
                     </Typography>
                   </TableCell>
-                  <TableCell>
+                  {/* <TableCell>
                     <div className="flex justify-center">
                       <Avatar
                         sx={{
@@ -370,7 +332,7 @@ function Homepage() {
                         <Edit color="white" />
                       </Avatar>
                     </div>
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell>
                     <div className="flex justify-center">
                       <Avatar
