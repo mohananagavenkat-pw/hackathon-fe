@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Button,
@@ -15,94 +15,36 @@ import {
 import { blue, green } from "@mui/material/colors";
 import { Edit } from "@mui/icons-material";
 import EvaluateModal from "./EvaluateModal";
+import { useParams } from "react-router-dom";
+import { BASE_API_URL } from "../../../constants/Config";
+import AdminApi from "../../../apis/managers/admin";
 
 function TeamViewTable() {
-  const [teamList, setTeamList] = useState([
-    {
-      _id: 1,
-      name: "team 1",
-      status: "submitted",
-    },
-    {
-      _id: 2,
-      name: "team 2",
-      status: "evaluated",
-    },
-    {
-      _id: 3,
-      name: "team 3",
-      status: "submitted",
-    },
-    {
-      _id: 4,
-      name: "team 4",
-      status: "evaluated",
-    },
-    {
-      _id: 5,
-      name: "team 5",
-      status: "evaluated",
-    },
-    {
-      _id: 6,
-      name: "team 6",
-      status: "evaluated",
-    },
-    {
-      _id: 7,
-      name: "team 7",
-      status: "submitted",
-    },
-    {
-      _id: 8,
-      name: "team 8",
-      status: "evaluated",
-    },
-    {
-      _id: 9,
-      name: "team 9",
-      status: "submitted",
-    },
-    {
-      _id: 10,
-      name: "team 10",
-      status: "evaluated",
-    },
-    {
-      _id: 11,
-      name: "team 11",
-      status: "evaluated",
-    },
-    {
-      _id: 12,
-      name: "team 12",
-      status: "evaluated",
-    },
-    {
-      _id: 13,
-      name: "team 13",
-      status: "submitted",
-    },
-    {
-      _id: 14,
-      name: "team 14",
-      status: "evaluated",
-    },
-    {
-      _id: 15,
-      name: "team 15",
-      status: "evaluated",
-    },
-    {
-      _id: 16,
-      name: "team 16",
-      status: "evaluated",
-    },
-  ]);
+  const [teamList, setTeamList] = useState([]);
 
   const [page, setPage] = useState(0);
+  const [userId, setUserId] = useState(0);
   const [showEvaluateModal, setShowEvaluateModal] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [questions, setQuestion] = useState([]);
+  const [answer, setAnswer] = useState([]);
+  const { hackathonId, questionId } = useParams();
+
+  const callApi = async (hackathonId, questionId) => {
+    console.log(questionId, hackathonId);
+    const result = await AdminApi.fetchHackathons(hackathonId, questionId);
+    setTeamList(result.data);
+  };
+
+  const onEvaluate = () => {
+    callApi(hackathonId, questionId);
+  };
+
+  useEffect(() => {
+    if (questionId && hackathonId) {
+      callApi(hackathonId, questionId);
+    }
+  }, [hackathonId, questionId]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -164,14 +106,16 @@ function TeamViewTable() {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell align="center">{startIndex + index + 1}</TableCell>
-                  <TableCell align="center">{team.name}</TableCell>
+                  <TableCell align="center">{team.Results.title}</TableCell>
                   <TableCell align="center">
                     <Chip
-                      label={team.status}
+                      label={team.Results.status}
                       variant="filled"
                       style={{
                         backgroundColor:
-                          team.status === "submitted" ? green[100] : blue[100],
+                          team.Results.status === "Submitted"
+                            ? green[100]
+                            : blue[100],
                         color: "black",
                         padding: "20px",
                       }}
@@ -183,6 +127,9 @@ function TeamViewTable() {
                         variant="outlined"
                         onClick={() => {
                           setShowEvaluateModal(true);
+                          setQuestion(team.question);
+                          setAnswer(team.answer);
+                          setUserId(team.teams[0].userId);
                         }}
                         className="flex justify-center !bg-blue-50"
                       >
@@ -201,6 +148,12 @@ function TeamViewTable() {
         <EvaluateModal
           open={showEvaluateModal}
           setOpen={setShowEvaluateModal}
+          question={questions}
+          answer={answer}
+          hackathonId={hackathonId}
+          questionId={questionId}
+          userId={userId}
+          onEvaluate={onEvaluate}
         />
       )}
     </div>
