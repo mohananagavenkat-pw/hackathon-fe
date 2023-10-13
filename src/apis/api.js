@@ -12,8 +12,8 @@ const getHeaders = () => ({
     return new Promise((resolve, reject) => {
       axios({
         method,
-        baseURL:"http://ec2-35-77-62-86.ap-northeast-1.compute.amazonaws.com:9999/api/",
-        url:"http://ec2-35-77-62-86.ap-northeast-1.compute.amazonaws.com:9999/api/" + endpoint,
+        // baseURL:"http://ec2-35-77-62-86.ap-northeast-1.compute.amazonaws.com:9999/api/",
+        url:"http://ec2-35-77-62-86.ap-northeast-1.compute.amazonaws.com:9999/api" + endpoint,
         headers: {
           ...(getHeaders()),
           "x-device-type": "web",

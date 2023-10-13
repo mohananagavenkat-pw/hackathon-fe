@@ -78,9 +78,9 @@ const router = createBrowserRouter([
   {
     path: "/hackathon/:name/:id/:status",
     element: (
-      <CheckProtectedRoute role="user">
+    //   <CheckProtectedRoute role="user">
         <Live />
-      </CheckProtectedRoute>
+    //   </CheckProtectedRoute>
     ),
   },
   {
@@ -88,6 +88,14 @@ const router = createBrowserRouter([
     element: (
       // <CheckProtectedRoute roleArg="user">
       <HackathonTeamViewPage />
+      // </CheckProtectedRoute>
+    ),
+  },
+  {
+    path: "/admin/hackathon/:name/:id",
+    element: (
+      // <CheckProtectedRoute roleArg="user">
+     <Live />
       // </CheckProtectedRoute>
     ),
   },

@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import ApplicationTab from "../../components/ApplicationTab";
 import HackathonCard from "../../components/Cards/HackathonCard";
 import hackathonImage from "../../assets/hackathonImage.svg";
@@ -14,6 +14,51 @@ import DiscussionTab from "../../components/RegistrationPage/DiscussionTab";
 
 const HackathonDetails = () => {
   const token = localStorage.getItem("token")
+  const [hackathonDetails , setHackathonDetails] = useState({
+    "title": "testing one",
+    "hackathonType": "project",
+    "hackathonMode": "practice",
+    "submissionType": "team",
+    "teamSize": 1,
+    "startDate": {
+      "$date": "2023-07-25T11:19:30.693Z"
+    },
+    "maxStartDate": {
+      "$date": "2023-07-25T11:29:40.693Z"
+    },
+    "endDate": {
+      "$date": "2023-08-25T11:29:40.693Z"
+    },
+    "resultDate": {
+      "$date": "2023-09-27T11:49:30.693Z"
+    },
+    "details": "hello one kkkkkk",
+    "companyDetails": {
+      "name": "pw skill",
+      "place": "noida",
+      "companyType": "ed-tech",
+      "image": ""
+    },
+    "instruction": "hhhhh hibjfd kdsbfosd sdfnios",
+    "questions": [
+      {
+        "question": "create a project on React-js",
+        "questionType": "text",
+        "outOf": 100,
+        "_id": {
+          "$oid": "6526456012c1c19cb8f894ca"
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": "2023-10-11T06:49:04.683Z"
+    },
+    "updatedAt": {
+      "$date": "2023-10-11T06:51:18.800Z"
+    },
+    "__v": 0
+  })
+
   const navigate = useNavigate()
   const tabs = [
     {
@@ -113,7 +158,7 @@ const HackathonDetails = () => {
           alignItems: "center",
         }}
       >
-        <HackathonCard />
+        <HackathonCard hackathonDetails = {hackathonDetails}/>
       </div>
       {/* </Container> */}
     </div>
