@@ -17,13 +17,13 @@ const ApplicationTab = ({ options, direction }) => {
           } gap-2 p-4 `}
           style={{ background: "white" , borderRadius : "8px" , width : "20%" , height: "600px"}}
         >
-          {options.map((optionSingleObj) => 
+          {options?.map((optionSingleObj) => 
              !optionSingleObj?.disabled && 
               <div
               className={`flex ${
                 direction === "row" ? "flex-col" : "flex-row"
               } cursor-pointer justify-start items-center gap-2`}
-              onClick={() => {setActiveTab(optionSingleObj) ;optionSingleObj.onClick() }}
+              onClick={() => {setActiveTab(optionSingleObj) ;optionSingleObj?.onClick() }}
             >
               {direction === "column" && (
                 <div

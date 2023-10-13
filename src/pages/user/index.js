@@ -9,12 +9,12 @@ import "../../index.css";
 const User = () => {
 	return (
 		<div>
-			<Navbar color = "white"/>
+			<Navbar color="white" />
 			<Homepage />
 
-      <FooterComponent />
-    </div>
-  );
+			<FooterComponent />
+		</div>
+	);
 };
 
 export default User;

@@ -12,6 +12,7 @@ import PWskills from "../../assets/PWskills";
 import { useNavigate } from "react-router-dom";
 import DiscussionTab from "../../components/RegistrationPage/DiscussionTab";
 import { apiFunction } from "../../apis/api";
+import RounderList from "../../components/RegistrationPage/RoundList";
 
 const HackathonDetails = () => {
   const token = localStorage.getItem("token")
@@ -126,6 +127,12 @@ const HackathonDetails = () => {
       value: "results",
       disabled: !localStorage.getItem(token),
       onClick: () => apiCallFunction("About")
+    },
+    {
+      text: "Rounds",
+      component: <RounderList />,
+      value: "rounds",
+      onClick: () => null
     },
     {
       text: "DiscussionTab",
