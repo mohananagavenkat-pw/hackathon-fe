@@ -1,12 +1,16 @@
 /** @format */
 
 import { Button, Input, Typography } from "@pwskills/rachnaui";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { saveTokenAndRole, validateEmail } from "../../utils/functions";
 import AuthApi from "../../apis/managers/authApi";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/app/useAuth";
+import { apiFunction } from "../../apis/api";
 
 const SignUp = () => {
+	const signupFunction = useAuth().signupFunction;
+	const token = useAuth().token;
 	const [creds, setCreds] = useState({
 		name: "",
 		email: "",
@@ -34,49 +38,16 @@ const SignUp = () => {
 	};
 
 	const handleLogin = async () => {
-		setErrors({
-			name: "",
-			email: "",
-			password: "",
-			signUp: "",
-		});
-		if (!creds.name) {
-			setErrors({ ...errors, name: "Please enter name" });
-			return;
-		}
+		console.log("function")
+	    apiFunction("post" , "/auth/signup" , "" , creds).then((resp) => {
+			console.log("response" , resp)
+			signupFunction(resp?.data)
+			localStorage.setItem("token" , resp?.data?.token)
+		}).catch((err) => {
+			console.log("err" , err)
+		})
 
-		if (!creds.email) {
-			setErrors({ ...errors, email: "Please enter an email." });
-			return;
-		}
-		if (!validateEmail(creds?.email)) {
-			setErrors({ ...errors, signUp: "Please check entered email." });
-			return;
-		}
-		if (!creds.password) {
-			setErrors({ ...errors, password: "Please enter password" });
-			return;
-		}
-
-		try {
-			setErrors({
-				name: "",
-				email: "",
-				password: "",
-				signUp: "",
-			});
-			const res = await AuthApi.signUp(creds);
-
-			if (!res?.error) {
-				console.log("res----", res);
-				saveTokenAndRole(res.token, res.isAdmin);
-				navigate(`${res.isAdmin ? "/admin" : "/user"}`);
-			}
-		} catch (err) {
-			setErrors({ ...errors, signUp: err });
-		}
 	};
-	console.log(errors);
 
 	return (
 		<div className="grid place-items-center h-[100vh] w-[100vw] ">
@@ -178,7 +149,7 @@ const SignUp = () => {
 				)}
 				<div className="flex mt-5">
 					<Button className="w-full" onClick={handleLogin}>
-						Login
+						Sing Up
 					</Button>
 				</div>
 			</div>

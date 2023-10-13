@@ -16,6 +16,7 @@ class AuthApi {
 	}
 
 	static async signUp(payload) {
+		console.log("sdsdsd")
 		return post("auth/signup", payload);
 	}
 }

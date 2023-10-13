@@ -17,11 +17,12 @@ class ApiClient {
 	}
 
 	_getClient(baseURL, cookieToken) {
+		console.log("NEXT_PUBLIC_BACKEND_URL"  ,process.env.NEXT_PUBLIC_BACKEND_URL )
 		const apiClient = axios.create({
 			baseURL:
-				baseURL ||
-				process.env.NEXT_PUBLIC_BACKEND_URL ||
-				"http://192.168.2.206:3000/api",
+				// baseURL ||
+				// process.env.NEXT_PUBLIC_BACKEND_URL,
+				"https://ff3f-2409-40f2-2d-e35-b488-c776-66b-dbd6.ngrok-free.app/api/"
 		});
 
 		apiClient.interceptors.request.use(
@@ -83,6 +84,7 @@ class ApiClient {
 	}
 
 	_post(url, data, config) {
+		console.log("sdsdsd 111111")
 		const post = this._getClient().post(url, data, config);
 		return post;
 	}

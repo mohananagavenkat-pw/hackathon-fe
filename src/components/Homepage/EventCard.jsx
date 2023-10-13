@@ -2,8 +2,10 @@
 
 import React from "react";
 import { Button, Card, Typography } from "@pwskills/rachnaui";
+import { useNavigate } from "react-router-dom";
 
 function EventCard({ hackathonEvent }) {
+  const navigate = useNavigate()
   return (
     <Card className="m-0 flex flex-col p-3 gap-6 pb-6 shadow-light">
       <div className="flex flex-col gap-4">
@@ -35,7 +37,7 @@ function EventCard({ hackathonEvent }) {
         </Typography>
       </div>
       <div className="flex gap-3 items-center">
-        <Button variant="primary" size="small">
+        <Button variant="primary" size="small" onClick={() => navigate(`/hackathon/${hackathonEvent.title}/${hackathonEvent.id}`)}>
           Register
         </Button>
         <Typography

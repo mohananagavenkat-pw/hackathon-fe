@@ -18,7 +18,7 @@ import Live from "../pages/hackathonLive";
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Navigate to="/login" />,
+		element: <Navigate to="/user" />,
 		children: [],
 	},
 
