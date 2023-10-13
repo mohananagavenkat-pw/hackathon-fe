@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import { saveTokenAndRole, validateEmail } from "../../utils/functions";
 import AuthApi from "../../apis/managers/authApi";
 import { useNavigate } from "react-router-dom";
+import { apiFunction } from "../../apis/api";
+import useAuth from "../../hooks/app/useAuth";
 
 const Login = () => {
 	const [creds, setCreds] = useState({
@@ -17,7 +19,7 @@ const Login = () => {
 		password: "",
 		login: "",
 	});
-
+	const signupFunction = useAuth().signupFunction;
 	const handleInputs = (e) => {
 		const { name, value } = e.target;
 		setCreds({ ...creds, [name]: value });
@@ -44,24 +46,18 @@ const Login = () => {
 			setErrors({ ...errors, password: "Please enter password" });
 			return;
 		}
-
-		try {
-			setErrors({
-				email: "",
-				password: "",
-				login: "",
-			});
-			//api
-			const res = await AuthApi.login(creds);
-			if (!res?.error) {
-				saveTokenAndRole(res.token, res.isAdmin);
-
-				navigate(`${res.isAdmin ? "/admin" : "/user"}`);
-				// <Navigate to={`${res.isAdmin ? "/admin" : "/user"}`} />;
-			}
-		} catch (err) {
-			setErrors({ ...errors, login: err });
-		}
+		apiFunction("post" , "/auth/signin" , "" , creds).then((resp) => {
+			console.log("response" , resp)
+			signupFunction(resp?.data)
+			localStorage.setItem("token" , resp?.data?.token)
+			if(resp?.data?.isAdmin)
+			navigate("/admin")
+		    else
+			navigate("/user")
+		}).catch((err) => {
+			console.log("err" , err)
+		})
+		
 	};
 
 	return (
