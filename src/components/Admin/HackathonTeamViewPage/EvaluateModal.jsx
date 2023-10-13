@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Alert,
   Button,
@@ -8,25 +8,48 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  FormControl,
   Grid,
   InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select,
   TextField,
 } from "@mui/material";
 import { Typography } from "@pwskills/rachnaui";
 import Toaster from "../../Common/Toaster";
+import { useParams } from "react-router-dom";
+import { BASE_API_URL } from "../../../constants/Config";
 
-function EvaluateModal({ open, setOpen }) {
+function EvaluateModal({
+  open,
+  setOpen,
+  question,
+  answer,
+  hackathonId,
+  questionId,
+  userId,
+  onEvaluate,
+}) {
   const [formData, setFormData] = useState({
-    question: "Question 1 is this one",
-    answer: "answer to question 1 is this one",
+    questionStatus: "evaluated",
   });
   const [response, setResponse] = useState(null);
   const [isError, setIsError] = useState({ error: false, message: "" });
   const [openToaster, setOpenToaster] = useState(false);
   const [submittingResponse, setSubmittingResponse] = useState(false);
+  const [values, setValues] = React.useState(["pass", "fail"]);
+  const [selected, setSelected] = useState("");
+
+  const token = localStorage.getItem("token");
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleChange = (event) => {
+    setSelected(event.target.value);
+    setFormData({ ...formData, status: event.target.value });
   };
 
   const handleReset = () => {
@@ -40,25 +63,32 @@ function EvaluateModal({ open, setOpen }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmittingResponse(true);
+    // setSubmittingResponse(true);
+
     // Make an API request with formData
     try {
       // Replace the following with your actual API request code
-      //   const apiResponse = await fetch("your-api-endpoint", {
-      //     method: "POST",
-      //     body: JSON.stringify(formData),
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   });
+      const apiResponse = await fetch(
+        `${BASE_API_URL}/admin/evaluate-hackathon/?hackathonId=6526456012c1c19cb8f894c9&questionId=6526456012c1c19cb8f894ca&userId=652527039203dfd69f89d47c`,
+        {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-      //   const responseData = await apiResponse.json();
-      setTimeout(() => {
-        setResponse("responseData");
+      const responseData = await apiResponse.json();
+      if (responseData) {
+        setResponse(responseData);
         setSubmittingResponse(false);
         setOpenToaster(true);
+        setOpen(false);
+        onEvaluate();
         setIsError({ error: true, message: "success" });
-      }, 2000);
+      }
     } catch (error) {
       console.error(error);
       setOpenToaster(true);
@@ -86,11 +116,13 @@ function EvaluateModal({ open, setOpen }) {
             <Grid container rowGap={2} spacing={2}>
               <Grid item xs={12}>
                 <Typography variant="bold">Question</Typography>
-                <Typography variant="body2">this is a question</Typography>
+                <Typography variant="body2">{"dummy question"}</Typography>
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="bold">Solution</Typography>
-                <Typography variant="body2">this is a Solution</Typography>
+                <Typography variant="body2">
+                  {answer ? answer[0] : "dummy answer"}
+                </Typography>
               </Grid>
 
               <Grid item xs={12} display="grid" gap="10px">
@@ -113,7 +145,7 @@ function EvaluateModal({ open, setOpen }) {
                       : ""
                   }
                   onChange={(e) =>
-                    setFormData({ ...formData, marks: e.target.value })
+                    setFormData({ ...formData, points: e.target.value })
                   }
                   FormHelperTextProps={{
                     sx: {
@@ -123,26 +155,27 @@ function EvaluateModal({ open, setOpen }) {
                 />
               </Grid>
               <Grid item xs={12} display="grid" gap="10px">
-                <Typography variant="bold">Feedbacks</Typography>
-                <TextField
-                  value={formData.feedback}
-                  placeholder="Enter the feedback.."
-                  multiline
-                  rows={3}
-                  maxRows={6}
-                  onChange={(e) =>
-                    setFormData({ ...formData, feedback: e.target.value })
-                  }
-                />
+                <Typography variant="bold">Result</Typography>
+                <FormControl sx={{ width: "200px" }}>
+                  <Select
+                    value={selected}
+                    onChange={handleChange}
+                    inputProps={{
+                      name: "result",
+                      id: "age-simple",
+                    }}
+                    placeholder="Pass/Fail"
+                  >
+                    {values.map((value, index) => {
+                      return <MenuItem value={value}>{value}</MenuItem>;
+                    })}
+                  </Select>
+                </FormControl>
               </Grid>
+
               {!submittingResponse && (
                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                   <Grid container justifyContent="flex-end" columnSpacing={2}>
-                    <Grid item>
-                      <Button variant="outlined" onClick={handleReset}>
-                        Reset
-                      </Button>
-                    </Grid>
                     <Grid item>
                       <Button type="submit" variant="contained" autoFocus>
                         Evaluate
