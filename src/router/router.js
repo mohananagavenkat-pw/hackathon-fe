@@ -4,10 +4,6 @@ import { createBrowserRouter } from "react-router-dom";
 import User from "../pages/user";
 import Admin from "../pages/admin";
 import CheckProtectedRoute from "../hoc/CheckProtectedRoute";
-import Homepage from "../components/Homepage";
-import HomepageAdmin from "../components/Admin/HomePage";
-import ApplicationTab from "../components/ApplicationTab";
-import { Typography } from "@mui/material";
 import HackathonDetails from "../pages/hackathon";
 import Registration from "../pages/user/Registration";
 import Login from "../pages/Auth/Login";
@@ -19,28 +15,28 @@ import CreateEditHackathon from "../pages/admin/CreateEditHackathon";
 import HackathonTeamViewPage from "../components/Admin/HackathonTeamViewPage";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Navigate to="/login" />,
-    children: [],
-  },
+	{
+		path: "/",
+		element: <Navigate to="/user" />,
+		children: [],
+	},
 
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/sign-up",
-    element: <SignUp />,
-  },
-  {
-    path: "/user",
-    element: (
-      // <CheckProtectedRoute roleArg="user">
-      <User />
-      // </CheckProtectedRoute>
-    ),
-  },
+	{
+		path: "/signin",
+		element: <Login />,
+	},
+	{
+		path: "/sign-up",
+		element: <SignUp />,
+	},
+	{
+		path: "/user",
+		element: (
+			// <CheckProtectedRoute roleArg="user">
+			<User />
+			// </CheckProtectedRoute>
+		),
+	},
 
   {
     path: "/admin",

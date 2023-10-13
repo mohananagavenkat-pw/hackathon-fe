@@ -9,9 +9,12 @@ import Navbar from "../../components/Navbar";
 import { Container } from "@pwskills/rachnaui";
 import { Button } from "@pwskills/rachnaui";
 import PWskills from "../../assets/PWskills";
+import { useNavigate } from "react-router-dom";
 import DiscussionTab from "../../components/RegistrationPage/DiscussionTab";
 
 const HackathonDetails = () => {
+  const token = localStorage.getItem("token")
+  const navigate = useNavigate()
   const tabs = [
     {
       text: "About Hackathon",
@@ -50,17 +53,32 @@ const HackathonDetails = () => {
       value: "faqs",
     },
   ];
+  const handleRouting = (type) => {
+      switch(type) {
+        case "singup" : 
+        navigate('/sign-up') 
+        break;
+        case "signin" : 
+        navigate('/signin') 
+        break;
+        default : 
+        navigate('/sign-up') 
+        break;
+      }
+  }
   return (
     <div className="flex flex-col relative ">
       <div className={`flex bg-white justify-center items-center py-4 w-full `}>
         <div className={`flex justify-between w-[85%]`}>
-          <PWskills color={"black"} />
-          <div className="flex gap-2">
-            <Button>Sign In</Button>
-            <Button variant="secondary">Sign Up</Button>
-          </div>
+        <PWskills color = {"black"}/>
+        {token ?  <div className="w-[50px] h-[50px] bg-yellow-600 rounded-[50%] flex justify-center items-center text-white">user</div> : <div className="flex gap-2">
+        
+        <Button onClick={() => handleRouting('signin')}>Sign In</Button>
+        <Button variant="secondary" onClick={() => handleRouting('signup')}>Sign Up</Button>
+      </div>}
         </div>
-      </div>
+      
+    </div>
       {/* <Container className="p-4  min-w-[100%] relative"> */}
       <div className="absolute -z-10 ">
         <img src={Hackathonbg} alt="hackathonbg" />
